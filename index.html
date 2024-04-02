@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Finder & Reviews</title>
+    <link rel="stylesheet" href="./assets/css/style.css"/>
+</head>
+<body>
+    <header>
+        <h1>Book Finder and Reviews</h1>
+    </header>
+    <div> 
+        <h2>Book Finder</h2>
+        <div class="container">
+            <img src="./assets/images/bookfinder.png" alt="Book Image">
+            <p>This webpage allows you to search for books by title, author, or genre. Find your next favorite book!</p>
+        </div>
+        <div class="center">
+            <button onclick="openSearchModal()">Search Book</button>
+        </div>
+
+        <div id="search-modal" class="modal">
+            <div class="modal-content">
+                <h2>Search Book</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="search-title">Title:</label>
+                        <input type="text" id="search-title" name="search-title">
+                    </div>
+                    <div class="form-group">
+                        <label for="search-author">Author:</label>
+                        <input type="text" id="search-author" name="search-author">
+                    </div>
+                    <div class="form-group">
+                        <label for="search-genre">Genre:</label>
+                        <input type="text" id="search-genre" name="search-genre">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <div>
+        <h2>Book Review</h2>
+
+         <div class="container">
+            <img src="./assets/images/bookreviews.png" alt="Book Image">
+            <p>This webpage allows you to add and submit book reviews. Share your thoughts and opinions about your favorite books!</p>
+        </div>
+
+        <div class="center">
+         <button onclick="openModal()">Add Review</button>
+        </div>
+
+        <div id="modal" class="modal">
+         <div class="modal-content">
+            <h2>Add Review</h2>
+            <form>
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="book-title">Book Title:</label>
+                    <input type="text" id="book-title" name="book-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="book-genre">Book Genre:</label>
+                    <input type="text" id="book-genre" name="book-genre" required>
+                <div class="form-group">
+                    <label for="book-author">Book Author:</label>
+                    <input type="text" id="book-author" name="book-author" required>
+                </div>
+                <div class="form-group">
+                    <label for="summary">Personal Summary/Thoughts:</label>
+                    <textarea id="summary" name="summary" required></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
+    
