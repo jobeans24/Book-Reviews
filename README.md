@@ -27,3 +27,9 @@ THAT allows the user to search for a variety of books that may be of interest to
 
 ## Images
 
+WIREFRAME LAYOUT
+    ![Homepage WireFrame](./assets/images/wireframe1.png)
+    ![Modal WireFrames](./assets/images/wireframe2.png)
+    ![Reviews WireFrame](./assets/images/wireframe3.png)
+
+    
