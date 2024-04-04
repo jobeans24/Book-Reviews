@@ -13,17 +13,36 @@
     <header>
         <h1>Book Finder and Reviews</h1>
     </header>
-    <div> 
-        <h2>Book Finder</h2>
-        <div class="container">
-            <img src="./assets/images/bookfinder.png" alt="Book Image">
-            <p>This webpage allows you to search for books by title, author, or genre. Find your next favorite book!</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Book Finder</h2>
+            </div>
         </div>
-        <div class="center">
-            <button onclick="openSearchModal()">Search Book</button>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="container">
+                    <img src="./assets/images/bookfinder.png" alt="Book Image">
+                    <p>This webpage allows you to search for books by title, author, or genre. Find your next favorite book!</p>
+                </div>
+                <div class="center">
+                    <button onclick="openSearchModal()">Search Book</button>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="container">
+                    <img src="./assets/images/bookreviews.png" alt="Book Image">
+                    <p>This webpage allows you to add and submit book reviews. Share your thoughts and opinions about your favorite books!</p>
+                </div>
+                <div class="center">
+                    <button onclick="openModal()">Add Review</button>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <div id="search-modal" class="modal">
+    <div id="search-modal" class="modal">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <h2>Search Book</h2>
                 <form>
@@ -45,7 +64,8 @@
                 </form>
             </div>
         </div>
-    <div>
+    </div>
+
         <h2>Book Review</h2>
 
          <div class="container">
@@ -86,7 +106,6 @@
             </form>
         </div>
     </div>
-
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
