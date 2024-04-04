@@ -33,7 +33,7 @@ WIREFRAME LAYOUT
     ![Reviews WireFrame](./assets/images/wireframe3.png)
 
 INDEX.HTML Imported Images
-![Review Image](./assets/images/bookreview.png)
+![alt text](image.png)
 ![Book Finder Image](./assets/images/bookfinder.png)
 ![Header image](./assets/images/bookgif.png)
 

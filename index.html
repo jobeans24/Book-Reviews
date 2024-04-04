@@ -44,7 +44,7 @@
             </div>
             <!-- Previous Search Results -->
             <div class="search-history" style="display: block; height: 100%; width: 100%; padding-top: 5px; background-color: aliceblue;">
-                <h3>Previous Search Inputs:</h3>
+                <h3 style="font-family: 'Times New Roman', Times, serif;">Previous Search Inputs:</h3>
                 <div id="previous-results" class="card-group"></div>
             </div>
             <div id="search-modal" class="modal" style="background-color: lightsteelblue; border-radius: 10px;">
@@ -84,17 +84,18 @@
         </div>
     </div>
     <!-- Book Review -->
-    <div class="reviewcontainer" style="align-items: center; width: 25%; ">
-        <div class="row" style="width: 100%;">
+    <div class="reviewcontainer" style="align-items: center; width: 25%; border: solid black 1px 1px 1px 1px; padding-left: 20px;">
+        <div class="row">
             <div class="col-lg-6">
                 <h2 style="display: block; font-family: 'Times New Roman', Times, serif;">Book Review</h2>
                 <div class="container">
                     
-                    <p style="width: 100%; text-justify: auto;">Add and submit book reviews. Share your thoughts and opinions about your favorite books!</p>
+                    <p style=" text-justify: auto;">Add and submit book reviews. Share your thoughts and opinions about your favorite books!</p>
                 </div>
-                <div class="center">
+                <div class="center" style="padding-top: 50px;">
                     <button onclick="openReviewModal()" style="bottom: 0; background-color: rgb(179, 174, 174); border-radius: 5px;">Add Review</button>
                 </div>
+                <img src="./assets/images/bookreview.png" alt="Review Books Here" style="padding-left: 20px; justify-content:center 0; border-radius: 10px; padding-top: 50px;">
                 <!-- Review Form -->
                 <div id="review-modal" class="modal">
                     <div class="modal-content">

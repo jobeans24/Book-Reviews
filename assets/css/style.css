@@ -38,7 +38,6 @@ nav ul li a {
         width: 25%; /* Set the width of the search container */
         position: fixed; /* Fix the position of the search container */
         left: 0; /* Align the search container to the left */
-        background-color: lightcyan; /* Light blue background color */
         height: 100%; /* Set the height of the search container */;
         padding: 5px; /* Add some padding */
         display: flex; /* Make the search container display as a flexbox */
@@ -83,7 +82,8 @@ nav ul li a {
         float: right; /* Align the review container to the right */
         position: fixed; /* Fix the position of the review container */
        height: 100%; /* Set the height of the review container */
-       background-color: lightcyan; /* Light blue background color */
+       background-color: white; /* White background color */
+       
     }
 
 /* Position the footer */
@@ -101,7 +101,7 @@ nav ul li a {
 
 
 .reviewcontainer p {
-    width: fit-content; /* Set the width of the review container */
+    
     margin: 0 auto; /* Center the text */
 }
 
