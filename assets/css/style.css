@@ -76,7 +76,6 @@ nav ul li a {
 
 /* Position the review container */
     .reviewcontainer {
-        width: 25%; /* Set the width of the review container */
         padding: 5px; /* Add some padding */
         right: 0; /* Align the review container to the right */
         display: flex; /* Make the review container display as a flexbox */
@@ -106,7 +105,7 @@ nav ul li a {
     margin: 0 auto; /* Center the text */
 }
 
-/** Media Queries **/
+
 @media screen and (max-width: 768px) {
     .resultscontainer {
         width: 100%;
