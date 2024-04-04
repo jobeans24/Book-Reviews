@@ -1,0 +1,60 @@
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/Publiclibrary.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.3; /* Adjust the opacity value between 0 (transparent) and 1 (fully opaque) */
+    z-index: -1; /* Ensure the pseudo-element is behind other content */
+}
+
+.nav-bg {
+    background-color: darkturquoise;
+}
+
+.navbar h1 {
+    line-height: 30px;
+}
+
+.custom-border {
+    border: 5px solid black;
+}
+
+.back-button {
+    margin: 20px;
+    width: 80%;
+}
+
+.add-review {
+    margin: 20px;
+    width: 80%;
+}
+
+.new-search {
+    width: 100%;
+    margin: 10px 0 10px 0;
+}
+
+.search-history {
+    margin: 20px;
+    border-top: 5px solid black;
+    width: 80%;
+    background-color: darkturquoise;
+    
+}
+
+.review-card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 10px 0 10px 0;
+    border: 5px solid black;
+}
+
+.cover-image {
+    padding: 10px;
+}
