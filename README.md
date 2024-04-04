@@ -34,6 +34,8 @@ WIREFRAME LAYOUT
 
 INDEX.HTML Imported Images
 ![Review Image](./assets/images/bookreview.png)
-![alt text](image.png)
+![Book Finder Image](./assets/images/bookfinder.png)
+![Virtual Search Results Image](./assets/images/virtuallibrary.png)
+![Header image](./assets/images/bookgif.png)
 
     
