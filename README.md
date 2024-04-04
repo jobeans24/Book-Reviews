@@ -32,4 +32,8 @@ WIREFRAME LAYOUT
     ![Modal WireFrames](./assets/images/wireframe2.png)
     ![Reviews WireFrame](./assets/images/wireframe3.png)
 
+INDEX.HTML Imported Images
+![Review Image](./assets/images/bookreview.png)
+![alt text](image.png)
+
     
