@@ -1,12 +1,23 @@
-function openModal() {
-    document.getElementById("modal").style.display = "block";
-}
+// Retrieve previous search results from local storage
+const previousResults = JSON.parse(localStorage.getItem('previousResults')) || [];
 
-function openModal2() {
-    document.getElementById("search-modal").style.display = "block";
-}
+// Display previous search results
+const previousResultsContainer = document.getElementById('previous-results');
+previousResults.forEach(result => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.innerHTML = `
+        <div class="card-body">
+            <h5 class="card-title">${result.title}</h5>
+            <p class="card-text">${result.author}</p>
+            <p class="card-text">${result.genre}</p>
+        </div>
+    `;
+    previousResultsContainer.appendChild(card);
+});
 
-function closeModal() {
-    document.getElementById("modal").style.display = "none";
-}
+
+
+
+
 
