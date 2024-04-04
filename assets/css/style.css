@@ -1,6 +1,6 @@
 /* Header */
 header {
-    background-color: lightseagreen; /* Light greenish background color */
+    background-color:lightsalmon; /* Light orange background color */
     color: white; /* White text color */
     text-align: center; /* Center the text */
     padding: 1px; /* Add some padding */
@@ -11,7 +11,7 @@ header {
 }
 /*Navigation bar */
 nav {
-    background-color: lightseagreen; /* Light greenish background color */
+    background-color: lightsalmon; /* Light orange background color */
     color: white; /* White text color */
     padding: 1px; /* Add some padding */
     display: flex; /* Make the nav items display in a row */
@@ -39,7 +39,7 @@ nav ul li a {
         position: fixed; /* Fix the position of the search container */
         left: 0; /* Align the search container to the left */
         background-color: lightcyan; /* Light blue background color */
-        height: 100%; /* Set the height of the search container */
+        height: 100%; /* Set the height of the search container */;
         padding: 5px; /* Add some padding */
         display: flex; /* Make the search container display as a flexbox */
         flex-direction: column; /* Align the items vertically */
@@ -50,16 +50,29 @@ nav ul li a {
  .resultscontainer {
         width: 60%; /* Set the width of the results container */
         position: fixed; /* Fix the position of the results container */
-        background-color: lightgray; /* Light gray background color */
+        background-image: url(https://i.etsystatic.com/11810216/r/il/9ad808/3025384484/il_570xN.3025384484_6jy5.jpg); /* Add a background image */
+            background-color: rgba(0, 0, 0, -5); /* Add a semi-transparent background color */
         border: black; /* Add a border to the results container */
         max-height: fit-content; /* Set the maximum height of the results container */
-        left: 290px; /* Align the results container to the right */
+        left: 295px; /* Align the results container to the right */
         padding: 5px; /* Add some padding */
         display: flex; /* Make the results container display as a flexbox */
         flex-direction: column; /* Align the items vertically */
         right: 295px; /* Align the results container to the right */
         height: 100%; /* Set the height of the results container */
   }
+
+
+
+/* makes the text in the container visible even with the background */
+  .resultscontainer p {
+    color: white; /* White text color */
+    text-align: center; /* Center the text */
+    font-size: 20px; /* Increase the font size */
+    padding: 10px; /* Add some padding */
+    background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background color */
+    margin: 0; /* Remove margin */
+}
 
 /* Position the review container */
     .reviewcontainer {
@@ -76,7 +89,7 @@ nav ul li a {
 
 /* Position the footer */
     footer {
-        background-color: lightseagreen; /* Light greenish background color */
+        background-color: lightsalmon; /* Light orange background color */
         color: white;  /* White text color */
         text-align: center; /* Center the text */
         padding: 1px; /* Add some padding */
@@ -85,20 +98,30 @@ nav ul li a {
         width: 100%; /* Set the width of the footer */
     }
 
-/* Responsive design */    
-.reviewcontainer img {
-    width: 100%; 
-    height: 100%;
-    object-fit: cover; /* Cover the image */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 
 
-}
 
-/* Responsive design */
 .reviewcontainer p {
     width: fit-content;
+    margin: 0 auto;
 }
+
+/** Media Queries **/
+@media screen and (max-width: 768px) {
+    .resultscontainer {
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+    .searchcontainer {
+        width: 40%;
+        left: 0;
+        right: 0;
+    }
+    .reviewcontainer {
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+}
+
