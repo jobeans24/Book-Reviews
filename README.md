@@ -27,13 +27,13 @@ THAT allows the user to search for a variety of books that may be of interest to
 
 ## Images
 
-WIREFRAME LAYOUT
+Wireframe Layout
     ![Homepage WireFrame](./assets/images/wireframe1.png)
     ![Modal WireFrames](./assets/images/wireframe2.png)
     ![Reviews WireFrame](./assets/images/wireframe3.png)
 
-INDEX.HTML Imported Images
-![alt text](image.png)
+Index.html Imported Images
+![alt text](./assets/images/bookreview.png)
 ![Book Finder Image](./assets/images/bookfinder.png)
 ![Header image](./assets/images/bookgif.png)
 
