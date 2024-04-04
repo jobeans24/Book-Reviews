@@ -36,21 +36,21 @@
         <h2 style="display: block; font-family: 'Times New Roman', Times, serif;">Search Book</h2>
         <div class="row">
             <div class="col-lg-6" style="align-items: center;">
-                <img src="./assets/images/bookfinder.png" alt="Book Image" style="width: 300px;">
+                <img src="./assets/images/bookfinder.png" alt="Book Image" style="width: 300px; border-radius: 5px;">
                 <p>Search for books by title, author, or genre. Find your next favorite book!</p>
             </div>
             <div class="center" style="bottom: 0; padding-bottom: 5px;">
-                <button onclick="openSearchModal()" style="bottom: 0; background-color: dimgrey; border-radius: 5px;">Search Book</button>
+                <button onclick="openSearchModal()" style="bottom: 0; background-color: rgb(179, 174, 174); border-radius: 5px;">Search Book</button>
             </div>
             <!-- Previous Search Results -->
-            <div class="search-history" style="display: block; height: 100%; width: 100%; padding-top: 5px;">
+            <div class="search-history" style="display: block; height: 100%; width: 100%; padding-top: 5px; background-color: aliceblue;">
                 <h3>Previous Search Inputs:</h3>
                 <div id="previous-results" class="card-group"></div>
             </div>
             <div id="search-modal" class="modal" style="background-color: lightsteelblue; border-radius: 10px;">
                 <div class="modal-content">
                     <!-- Search Form -->
-                    <h2>Search Book</h2>
+                    <h2 style="justify-content: center;">Search Book</h2>
                     <form>
                         <div class="form-group">
                             <label for="search-title">Title:</label>
@@ -93,7 +93,7 @@
                     <p style="width: 100%; justify-content: baseline;">Add and submit book reviews. Share your thoughts and opinions about your favorite books!</p>
                 </div>
                 <div class="center">
-                    <button onclick="openReviewModal()" style="bottom: 0; background-color: dimgrey; border-radius: 5px;">Add Review</button>
+                    <button onclick="openReviewModal()" style="bottom: 0; background-color: rgb(179, 174, 174); border-radius: 5px;">Add Review</button>
                 </div>
                 <!-- Review Form -->
                 <div id="review-modal" class="modal">
