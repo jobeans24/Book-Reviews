@@ -1,3 +1,5 @@
+// To Do: Declare global variables
+
 // Retrieve previous search results from local storage
 const previousResults = JSON.parse(localStorage.getItem('previousResults')) || [];
 
@@ -15,6 +17,25 @@ previousResults.forEach(result => {
     `;
     previousResultsContainer.appendChild(card);
 });
+
+//To Do: Link review button to review.html
+
+//To Do: Add event listener for search form submission
+
+//To Do: Add event listener for review form submission
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
