@@ -16,8 +16,12 @@ previousResults.forEach(result => {
     previousResultsContainer.appendChild(card);
 });
 
+// Function to redirect the page to review.html on click of the Add review button
 
+window.onload = function() {
+    let AddreviewButton = document.querySelector('#add-review');
 
-
-
-
+    AddreviewButton.addEventListener('click', function(){
+        window.location.href = 'review.html';
+    });
+};
