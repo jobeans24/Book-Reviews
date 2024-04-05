@@ -1,3 +1,5 @@
+// To Do: Declare global variables
+
 // Retrieve previous search results from local storage
 const previousResults = JSON.parse(localStorage.getItem('previousResults')) || [];
 
@@ -15,6 +17,31 @@ previousResults.forEach(result => {
     `;
     previousResultsContainer.appendChild(card);
 });
+
+//To Do: Link review button to review.html
+window.onload = function() {
+    let AddreviewButton = document.querySelector('#add-review');
+
+    AddreviewButton.addEventListener('click', function(){
+        window.location.href = 'review.html';
+    });
+};
+
+//To Do: Add event listener for search form submission
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Function to redirect the page to review.html on click of the Add review button
 

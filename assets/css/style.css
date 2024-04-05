@@ -49,8 +49,6 @@ nav ul li a {
  .resultscontainer {
         width: 60%; /* Set the width of the results container */
         position: fixed; /* Fix the position of the results container */
-        background-image: url(https://i.etsystatic.com/11810216/r/il/9ad808/3025384484/il_570xN.3025384484_6jy5.jpg); /* Add a background image */
-            background-color: rgba(0, 0, 0, -5); /* Add a semi-transparent background color */
         border: black; /* Add a border to the results container */
         max-height: fit-content; /* Set the maximum height of the results container */
         left: 295px; /* Align the results container to the right */
