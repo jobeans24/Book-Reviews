@@ -1,4 +1,5 @@
 // To Do: Declare global variables
+const APIkey = AIzaSyA9qnL3RBSyVXPew7iMQDfMDrtnAcZk780
 
 // Retrieve previous search results from local storage
 const previousResults = JSON.parse(localStorage.getItem('previousResults')) || [];
@@ -29,7 +30,16 @@ window.onload = function() {
 
 //To Do: Add event listener for search form submission
 
+//Logic for enabling the search modal
+function openSearchModal() {
+    var modal = document.getElementById('search-modal');
+    modal.style.display = 'block';
+}
 
+function openReviewModal() {
+    var modal = document.getElementById('review-modal');
+    modal.style.display = 'block';
+}
 
 
 

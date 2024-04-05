@@ -34,30 +34,17 @@ nav ul li a {
 
 
 /* Position the search container */
- .searchcontainer {
-        width: 25%; /* Set the width of the search container */
-        position: fixed; /* Fix the position of the search container */
-        left: 0; /* Align the search container to the left */
-        height: 100%; /* Set the height of the search container */;
-        padding: 5px; /* Add some padding */
-        display: flex; /* Make the search container display as a flexbox */
-        flex-direction: column; /* Align the items vertically */
-        float: left; /* Align the search container to the left */
-}
+
 
 /* Position the results container */
- .resultscontainer {
-        width: 60%; /* Set the width of the results container */
-        position: fixed; /* Fix the position of the results container */
-        border: black; /* Add a border to the results container */
-        max-height: fit-content; /* Set the maximum height of the results container */
-        left: 295px; /* Align the results container to the right */
-        padding: 5px; /* Add some padding */
-        display: flex; /* Make the results container display as a flexbox */
-        flex-direction: column; /* Align the items vertically */
-        right: 295px; /* Align the results container to the right */
-        height: 100%; /* Set the height of the results container */
-  }
+.results-container {
+    background-image: url(../images/Publiclibrary.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+
+}
+
 
 
 
@@ -71,21 +58,14 @@ nav ul li a {
     margin: 0; /* Remove margin */
 }
 
-/* Position the review container */
-    .reviewcontainer {
-        padding: 5px; /* Add some padding */
-        right: 0; /* Align the review container to the right */
-        display: flex; /* Make the review container display as a flexbox */
-        flex-direction: column; /* Align the items vertically */
-        float: right; /* Align the review container to the right */
-        position: fixed; /* Fix the position of the review container */
-       height: 100%; /* Set the height of the review container */
-       background-color: white; /* White background color */
+
        
-    }
+
 
 /* Position the footer */
     footer {
+        font-size: smaller;
+        font-family: 'Lucina Sans', 'Lucinda Sans Regular', 'Lucinda Sans Unicode', Geneva, Verdana, sans-serif;
         background-color: lightsalmon; /* Light orange background color */
         color: white;  /* White text color */
         text-align: center; /* Center the text */
@@ -98,10 +78,8 @@ nav ul li a {
 
 
 
-.reviewcontainer p {
-    
-    margin: 0 auto; /* Center the text */
-}
+
+
 
 
 @media screen and (max-width: 768px) {
@@ -121,4 +99,5 @@ nav ul li a {
         right: 0;
     }
 }
+
 
