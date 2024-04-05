@@ -1,3 +1,20 @@
+nav {
+    background-color: lightsalmon; /* Light orange background color */
+    color: white; /* White text color */
+    padding: 1px; /* Add some padding */
+    display: flex; /* Make the nav items display in a row */
+    flex-direction: column; /* Align the nav items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+}
+
+header {
+    background-color:lightsalmon; /* Light orange background color */
+    color: white; /* White text color */
+    text-align: center; /* Center the text */
+    padding: 1px; /* Add some padding */
+}
+
 body::before {
     content: "";
     position: fixed;
@@ -12,9 +29,6 @@ body::before {
     z-index: -1; /* Ensure the pseudo-element is behind other content */
 }
 
-.nav-bg {
-    background-color: darkturquoise;
-}
 
 .navbar h1 {
     line-height: 30px;
@@ -24,15 +38,11 @@ body::before {
     border: 5px solid black;
 }
 
-.back-button {
+.form-button{
     margin: 20px;
     width: 80%;
 }
 
-.add-review {
-    margin: 20px;
-    width: 80%;
-}
 
 .new-search {
     width: 100%;
@@ -43,7 +53,7 @@ body::before {
     margin: 20px;
     border-top: 5px solid black;
     width: 80%;
-    background-color: darkturquoise;
+    background-color: lightsalmon;
     
 }
 
@@ -57,4 +67,16 @@ body::before {
 
 .cover-image {
     padding: 10px;
+}
+
+footer {
+    font-size: smaller;
+    font-family: 'Lucina Sans', 'Lucinda Sans Regular', 'Lucinda Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: lightsalmon; /* Light orange background color */
+    color: white;  /* White text color */
+    text-align: center; /* Center the text */
+    padding: 1px; /* Add some padding */
+    position: fixed; /* Fix the position of the footer */
+    bottom: 0; /* Align the footer to the bottom */
+    width: 100%; /* Set the width of the footer */
 }
