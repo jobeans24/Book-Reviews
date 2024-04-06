@@ -20,15 +20,29 @@ previousResults.forEach(result => {
 });
 
 //To Do: Link review button to review.html
-window.onload = function() {
-    let AddreviewButton = document.querySelector('#add-review');
-
-    AddreviewButton.addEventListener('click', function(){
-        window.location.href = 'review.html';
-    });
-};
+function redirectToReviewPage() {
+    window.location.href = "review.html";
+}
 
 //To Do: Add event listener for search form submission
+// Select the search form element
+const searchForm = document.querySelector("form");
+
+// Add event listener for form submission
+searchForm.addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+    
+    // Get the values from the search form inputs
+    const title = document.getElementById("search-title").value;
+    const author = document.getElementById("search-author").value;
+    const genre = document.getElementById("search-genre").value;
+    
+    // Perform any necessary actions with the search values (e.g., fetch data, display results)
+    
+    // Reset the form after submission
+    searchForm.reset();
+});
+
 
 //Logic for enabling the search modal
 function openSearchModal() {
