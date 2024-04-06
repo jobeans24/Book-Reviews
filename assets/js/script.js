@@ -1,5 +1,5 @@
 // To Do: Declare global variables
-const APIkey = AIzaSyA9qnL3RBSyVXPew7iMQDfMDrtnAcZk780
+//const APIkey = AIzaSyA9qnL3RBSyVXPew7iMQDfMDrtnAcZk780
 
 // Retrieve previous search results from local storage
 const previousResults = JSON.parse(localStorage.getItem('previousResults')) || [];
@@ -19,27 +19,63 @@ previousResults.forEach(result => {
     previousResultsContainer.appendChild(card);
 });
 
-
 //To Do: Link review button to review.html
-window.onload = function() {
-    let AddreviewButton = document.querySelector('#add-review');
+function redirectToReviewPage() {
+    window.location.href = "review.html";
+}
 
-    AddreviewButton.addEventListener('click', function(){
-        window.location.href = 'review.html';
+// Function to retrieve Api data from google books
+
+
+// Function to fetch NYT best seller data
+function fetchBestSellers() {
+
+    fetch('https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=AFYgXoe5pmVDuEA0fr01nWXwxIu38wYX')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        // To Do: Save the data to local storage
+        localStorage.setItem('bestSellers', JSON.stringify(data.results.books));
+        // To Do: Display the data in the nyt-container
+        const bestsellers = data.results.books;
+        const nytContainer = document.getElementById('nyt-container');
+        bestsellers.forEach(book => {
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.innerHTML = `
+                <div class="card-body">
+                    <h5 class="card-title>${book.title}</h5>
+                    <p class="card-text">${book.author}</p>
+                    <p class="card-text">${book.genre}</p>
+                </div>
+            `;
+            nytContainer.appendChild(card);
+        });
+
     });
-};
+}
 
+
+fetchBestSellers();
+
+    
 //To Do: Add event listener for search form submission
-const searchForm = document.getElementById('search-form');
-searchForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    const title = document.getElementById('title').value;
-    const author = document.getElementById('author').value;
-    const genre = document.getElementById('genre').value;
-    const results = { title, author, genre };
-    previousResults.push(results);
-    localStorage.setItem('previousResults', JSON.stringify(previousResults));
-    window.location.href = 'review.html';
+// Select the search form element
+const searchForm = document.querySelector("form");
+
+// Add event listener for form submission
+searchForm.addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+    
+    // Get the values from the search form inputs
+    const title = document.getElementById("search-title").value;
+    const author = document.getElementById("search-author").value;
+    const genre = document.getElementById("search-genre").value;
+    
+    // Perform any necessary actions with the search values (e.g., fetch data, display results)
+    
+    // Reset the form after submission
+    searchForm.reset();
 });
 
 
@@ -47,24 +83,54 @@ searchForm.addEventListener('submit', function(event) {
 function openSearchModal() {
     var modal = document.getElementById('search-modal');
     modal.style.display = 'block';
-}
+
+    //search submit event listener
+    $('#submitsearch').on('click', handleSearchBooks) 
+           
+};
 
 function openReviewModal() {
     var modal = document.getElementById('review-modal');
     modal.style.display = 'block';
 }
 
+//handle search for books
+function handleSearchBooks(event) {
+    event.preventDefault();
 
+    let title = $('#search-title').val().trim();
+    let author = $('#search-author').val().trim();
+    let genre = $('#search-genre').val().trim();
+    
+    console.log('Title', title);
+    console.log('Author', author);
+    console.log('Genre', genre);
 
+    getOpenLibaryData(title, author, genre);
 
+};
+//Function for openlibrary
+function getOpenLibaryData(title, author, genre) {
+    
+    let openLibraryApi ='https://openlibrary.org/search.json?title=' + title + '&author=' + author + '&subject=' + genre;
+    console.log(openLibraryApi); 
 
+    fetch(openLibraryApi)
+        .then(function (response) {
+         if (response.ok){
+            response.json().then(function (data){
+            console.log(data);
+            //Todo: make use of data
 
-
-
-
-
-
-
+            //after processing search return to index.html
+            window.location.href ='index.html';
+            
+          });
+         } else {
+          alert("Error: " + response.statusText);
+        };     
+        });
+    };
 
 // Function to redirect the page to review.html on click of the Add review button
 
@@ -74,4 +140,7 @@ window.onload = function() {
     AddreviewButton.addEventListener('click', function(){
         window.location.href = 'review.html';
     });
+
 };
+   
+// Fetch function to call the New York Times best seller API and display the books in the nyt-container
