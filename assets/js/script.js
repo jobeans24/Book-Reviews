@@ -1,4 +1,5 @@
 // To Do: Declare global variables
+//const APIkey = AIzaSyA9qnL3RBSyVXPew7iMQDfMDrtnAcZk780
 
 // Retrieve previous search results from local storage
 const previousResults = JSON.parse(localStorage.getItem('previousResults')) || [];
@@ -27,29 +28,62 @@ window.onload = function() {
     });
 };
 
-//To Do: Add event listener for search form 
-
 // Function to retrieve Api data from google books
-function GetGoogleBooksData() {
-const googleBooksApiKey = 'AIzaSyBOhwbepdzsM2prXOHmPDAE7zcYPKmbt7U'
+    
+//To Do: Add event listener for search form submission
 
-let googleBooksApi ='https://www.googleapis.com/books/v1/volumes?q=intitle:' + title + '+inauthor' + author +'insubject' + genre +'&key=' + googleBooksApiKey;
+//Logic for enabling the search modal
+function openSearchModal() {
+    var modal = document.getElementById('search-modal');
+    modal.style.display = 'block';
 
-//This is for testing purposes and can be deleted once parameter values are established from modal input
-//let googleBooksApi = 'https://www.googleapis.com/books/v1/volumes?q=intitle:AnimalFarm+author:GeorgeOrwell+insubject:ficiton&key=AIzaSyBOhwbepdzsM2prXOHmPDAE7zcYPKmbt7U'
+    //search submit event listener
+    $('#submitsearch').on('click', handleSearchBooks) 
+           
+};
 
-fetch(googleBooksApi)
-    .then(function (response) {
-     if (response.ok){
-        response.json().then(function (data){
-        console.log(data);
-        
-      })
-     } else {
-      alert("Error: " + response.statusText);
-    };     
-    });
+function openReviewModal() {
+    var modal = document.getElementById('review-modal');
+    modal.style.display = 'block';
 }
+
+//handle search for books
+function handleSearchBooks(event) {
+    event.preventDefault();
+
+    let title = $('#search-title').val().trim();
+    let author = $('#search-author').val().trim();
+    let genre = $('#search-genre').val().trim();
+    
+    console.log('Title', title);
+    console.log('Author', author);
+    console.log('Genre', genre);
+
+    getOpenLibaryData(title, author, genre);
+
+};
+//Function for openlibrary
+function getOpenLibaryData(title, author, genre) {
+    
+    let openLibraryApi ='https://openlibrary.org/search.json?title=' + title + '&author=' + author + '&subject=' + genre;
+    console.log(openLibraryApi); 
+
+    fetch(openLibraryApi)
+        .then(function (response) {
+         if (response.ok){
+            response.json().then(function (data){
+            console.log(data);
+            //Todo: make use of data
+
+            //after processing search return to index.html
+            window.location.href ='index.html';
+            
+          });
+         } else {
+          alert("Error: " + response.statusText);
+        };     
+        });
+    };
 
 // Function to redirect the page to review.html on click of the Add review button
 
@@ -59,4 +93,6 @@ window.onload = function() {
     AddreviewButton.addEventListener('click', function(){
         window.location.href = 'review.html';
     });
+
 };
+

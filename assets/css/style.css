@@ -1,0 +1,103 @@
+/* Header */
+header {
+    background-color:lightsalmon; /* Light orange background color */
+    color: white; /* White text color */
+    text-align: center; /* Center the text */
+    padding: 1px; /* Add some padding */
+}
+/* Form fields */
+.form-group {
+    margin-bottom: 20px; /* Add some space between the form fields */
+}
+/*Navigation bar */
+nav {
+    background-color: lightsalmon; /* Light orange background color */
+    color: white; /* White text color */
+    padding: 1px; /* Add some padding */
+    display: flex; /* Make the nav items display in a row */
+    flex-direction: column; /* Align the nav items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+}
+
+/* Navigation links */
+nav ul li a {
+    color: white;  /* White text color */
+    text-decoration: none; /* Remove underline from links */
+    display: inline-flex; /* Align the links horizontally */
+    justify-content: space-between;  /* Add space between the links */
+    padding: 14px 16px; /* Add padding to the links */
+    font-size: 20px; /* Increase the font size */
+    align-items: center; /* Align the links vertically */   
+    
+}
+
+
+/* Position the search container */
+
+
+/* Position the results container */
+.results-container {
+    background-image: url(../images/Publiclibrary.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+
+}
+
+
+
+
+/* makes the text in the container visible even with the background */
+  .resultscontainer p {
+    color: white; /* White text color */
+    text-align: center; /* Center the text */
+    font-size: 20px; /* Increase the font size */
+    padding: 10px; /* Add some padding */
+    background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background color */
+    margin: 0; /* Remove margin */
+}
+
+
+       
+
+
+/* Position the footer */
+    footer {
+        font-size: smaller;
+        font-family: 'Lucina Sans', 'Lucinda Sans Regular', 'Lucinda Sans Unicode', Geneva, Verdana, sans-serif;
+        background-color: lightsalmon; /* Light orange background color */
+        color: white;  /* White text color */
+        text-align: center; /* Center the text */
+        padding: 1px; /* Add some padding */
+        position: fixed; /* Fix the position of the footer */
+        bottom: 0; /* Align the footer to the bottom */
+        width: 100%; /* Set the width of the footer */
+    }
+
+
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+    .resultscontainer {
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+    .searchcontainer {
+        width: 40%;
+        left: 0;
+        right: 0;
+    }
+    .reviewcontainer {
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+}
+
+
