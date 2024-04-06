@@ -128,8 +128,17 @@ button:hover {
 
 
 
-
-
+button {
+    background-color: lightgray;
+    border: solid 1px black;
+    color: black;
+    cursor: pointer;
+    font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    position: relative;
+    text-align: center;
+  }
 
 
 
