@@ -20,50 +20,14 @@ previousResults.forEach(result => {
 });
 
 //To Do: Link review button to review.html
-function redirectToReviewPage() {
-    window.location.href = "review.html";
-}
+window.onload = function() {
+    let AddreviewButton = document.querySelector('#add-review');
 
-// Function to retrieve Api data from google books
+    AddreviewButton.addEventListener('click', function(){
+        window.location.href = 'review.html';
+    });
+};
 
-// Add event listener for nyt-button click
-const nytButton = document.getElementById('nyt-button');
-nytButton.addEventListener('click', getNYTData);
-
-function getNYTData() {
-    const nytApi = 'https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=AFYgXoe5pmVDuEA0fr01nWXwxIu38wYX';
-    fetch(nytApi)
-        .then(function (response) {
-            if (response.ok) {
-                response.json().then(function (data) {
-                    console.log(data);
-                    // To Do: Make use of data
-
-                    // Display book title, author, and genre in nyt-results
-                    const nytResultsContainer = document.getElementById('nyt-results');
-                    data.results.books.forEach(book => {
-                        const card = document.createElement('div');
-                        card.classList.add('card');
-                        card.innerHTML = `
-                            <div class="card-body">
-                                <h5 class="card-title">${book.title}</h5>
-                                <p class="card-text">${book.author}</p>
-                                <p class="card-text">${book.genre}</p>
-                            </div>
-                        `;
-                        nytResultsContainer.appendChild(card);
-                    });
-                });
-            } else {
-                alert('Error: ' + response.statusText);
-            }
-        });
-}
-
-
-
-
-    
 //To Do: Add event listener for search form submission
 // Select the search form element
 const searchForm = document.querySelector("form");
@@ -147,5 +111,3 @@ window.onload = function() {
     });
 
 };
-   
-// Fetch function to call the New York Times best seller API and display the books in the nyt-container
