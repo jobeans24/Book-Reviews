@@ -1,5 +1,5 @@
 // To Do: Declare global variables
-const APIkey = AIzaSyA9qnL3RBSyVXPew7iMQDfMDrtnAcZk780
+//const APIkey = AIzaSyA9qnL3RBSyVXPew7iMQDfMDrtnAcZk780
 
 // Retrieve previous search results from local storage
 const previousResults = JSON.parse(localStorage.getItem('previousResults')) || [];
@@ -24,6 +24,8 @@ function redirectToReviewPage() {
     window.location.href = "review.html";
 }
 
+// Function to retrieve Api data from google books
+    
 //To Do: Add event listener for search form submission
 // Select the search form element
 const searchForm = document.querySelector("form");
@@ -48,24 +50,54 @@ searchForm.addEventListener("submit", function(event) {
 function openSearchModal() {
     var modal = document.getElementById('search-modal');
     modal.style.display = 'block';
-}
+
+    //search submit event listener
+    $('#submitsearch').on('click', handleSearchBooks) 
+           
+};
 
 function openReviewModal() {
     var modal = document.getElementById('review-modal');
     modal.style.display = 'block';
 }
 
+//handle search for books
+function handleSearchBooks(event) {
+    event.preventDefault();
 
+    let title = $('#search-title').val().trim();
+    let author = $('#search-author').val().trim();
+    let genre = $('#search-genre').val().trim();
+    
+    console.log('Title', title);
+    console.log('Author', author);
+    console.log('Genre', genre);
 
+    getOpenLibaryData(title, author, genre);
 
+};
+//Function for openlibrary
+function getOpenLibaryData(title, author, genre) {
+    
+    let openLibraryApi ='https://openlibrary.org/search.json?title=' + title + '&author=' + author + '&subject=' + genre;
+    console.log(openLibraryApi); 
 
+    fetch(openLibraryApi)
+        .then(function (response) {
+         if (response.ok){
+            response.json().then(function (data){
+            console.log(data);
+            //Todo: make use of data
 
-
-
-
-
-
-
+            //after processing search return to index.html
+            window.location.href ='index.html';
+            
+          });
+         } else {
+          alert("Error: " + response.statusText);
+        };     
+        });
+    };
 
 // Function to redirect the page to review.html on click of the Add review button
 
@@ -75,4 +107,6 @@ window.onload = function() {
     AddreviewButton.addEventListener('click', function(){
         window.location.href = 'review.html';
     });
+
 };
+
