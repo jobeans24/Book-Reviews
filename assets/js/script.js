@@ -19,6 +19,7 @@ previousResults.forEach(result => {
     previousResultsContainer.appendChild(card);
 });
 
+
 //To Do: Link review button to review.html
 window.onload = function() {
     let AddreviewButton = document.querySelector('#add-review');
@@ -29,6 +30,18 @@ window.onload = function() {
 };
 
 //To Do: Add event listener for search form submission
+const searchForm = document.getElementById('search-form');
+searchForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const genre = document.getElementById('genre').value;
+    const results = { title, author, genre };
+    previousResults.push(results);
+    localStorage.setItem('previousResults', JSON.stringify(previousResults));
+    window.location.href = 'review.html';
+});
+
 
 //Logic for enabling the search modal
 function openSearchModal() {
