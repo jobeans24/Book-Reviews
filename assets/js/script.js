@@ -26,37 +26,42 @@ function redirectToReviewPage() {
 
 // Function to retrieve Api data from google books
 
+// Add event listener for nyt-button click
+const nytButton = document.getElementById('nyt-button');
+nytButton.addEventListener('click', getNYTData);
 
-// Function to fetch NYT best seller data
-function fetchBestSellers() {
+function getNYTData() {
+    const nytApi = 'https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=AFYgXoe5pmVDuEA0fr01nWXwxIu38wYX';
+    fetch(nytApi)
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (data) {
+                    console.log(data);
+                    // To Do: Make use of data
 
-    fetch('https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=AFYgXoe5pmVDuEA0fr01nWXwxIu38wYX')
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        // To Do: Save the data to local storage
-        localStorage.setItem('bestSellers', JSON.stringify(data.results.books));
-        // To Do: Display the data in the nyt-container
-        const bestsellers = data.results.books;
-        const nytContainer = document.getElementById('nyt-container');
-        bestsellers.forEach(book => {
-            const card = document.createElement('div');
-            card.classList.add('card');
-            card.innerHTML = `
-                <div class="card-body">
-                    <h5 class="card-title>${book.title}</h5>
-                    <p class="card-text">${book.author}</p>
-                    <p class="card-text">${book.genre}</p>
-                </div>
-            `;
-            nytContainer.appendChild(card);
+                    // Display book title, author, and genre in nyt-results
+                    const nytResultsContainer = document.getElementById('nyt-results');
+                    data.results.books.forEach(book => {
+                        const card = document.createElement('div');
+                        card.classList.add('card');
+                        card.innerHTML = `
+                            <div class="card-body">
+                                <h5 class="card-title">${book.title}</h5>
+                                <p class="card-text">${book.author}</p>
+                                <p class="card-text">${book.genre}</p>
+                            </div>
+                        `;
+                        nytResultsContainer.appendChild(card);
+                    });
+                });
+            } else {
+                alert('Error: ' + response.statusText);
+            }
         });
-
-    });
 }
 
 
-fetchBestSellers();
+
 
     
 //To Do: Add event listener for search form submission

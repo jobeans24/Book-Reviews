@@ -61,13 +61,17 @@
             <div class="results-container col-md-8 align-items-center" style="color: white; justify-content: space-evenly;">
                 <h4>Search Results</h4>
                 <p>Search results will be displayed here.</p>
-                <div class="nyt-container d-flex flex-column w-50" style="background-color: lightsalmon;">
-                    <div style="background-color: lightsalmon; border: 5px solid black;">
+                <div class="results">
+                    <!-- Search results will be displayed here -->
+                </div>
+                <div class="nyt-container d-flex flex-column w-50" style="background-color: lightsalmon; border: 5px solid black;">
+                    <div class="nyt-content">
                         <h4>New York Times Best Sellers</h4>
                         <p>Check out the latest best sellers from the New York Times!</p>
-                       
-
-                        
+                        <button id="nyt-button" onclick="getNYTData()">View NYT Best Sellers</button>
+                        <div class="nyt-results">
+                            <!-- NYT results will be displayed here -->
+                        </div>
                     </div>
                  </div>
             </div>
