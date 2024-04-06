@@ -20,12 +20,14 @@ previousResults.forEach(result => {
 });
 
 //To Do: Link review button to review.html
-function redirectToReviewPage() {
-    window.location.href = "review.html";
-}
+window.onload = function() {
+    let AddreviewButton = document.querySelector('#add-review');
 
-// Function to retrieve Api data from google books
-    
+    AddreviewButton.addEventListener('click', function(){
+        window.location.href = 'review.html';
+    });
+};
+
 //To Do: Add event listener for search form submission
 // Select the search form element
 const searchForm = document.querySelector("form");
@@ -109,4 +111,3 @@ window.onload = function() {
     });
 
 };
-
