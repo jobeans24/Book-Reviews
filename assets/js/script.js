@@ -25,7 +25,6 @@ function getBestSellersData() {
     // API endpoint
     const bestSellersAPI = 'https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=AFYgXoe5pmVDuEA0fr01nWXwxIu38wYX';
     console.log(bestSellersAPI);
-
     // Fetch data from the API
     fetch(bestSellersAPI)
         .then(function (response) {
@@ -119,7 +118,30 @@ function handleSearchBooks(event) {
 //Function for openlibrary
 function getOpenLibaryData(title, author, genre) {
     
-    let openLibraryApi ='https://openlibrary.org/search.json?title=' + title + '&author=' + author + '&subject=' + genre;
+    let openLibraryApi ='https://openlibrary.org/search.json?';
+    //if else statment to sort provided parameters
+    if (title) {
+        openLibraryApi += 'title=' + title;
+        if (author) {
+            openLibraryApi += '&author=' + author;
+            if (genre) {
+                openLibraryApi += '&subject=' + genre           
+             }
+        } else if (genre) {
+            openLibraryApi += '&subject=' + genre
+        }
+    } else if (author) {
+        openLibraryApi += 'author=' + author;
+        if (genre) {
+            openLibraryApi += '&subject=' + genre;
+        }
+    } else if (genre) {
+        openLibraryApi += 'subject=' + genre;
+    } else {
+        alert('Must input at least one search parameter');
+        return;
+    }
+    
     console.log(openLibraryApi); 
 
     fetch(openLibraryApi)
@@ -130,10 +152,8 @@ function getOpenLibaryData(title, author, genre) {
             
             //Todo: make use of data
             renderSearchResults(data);
-            //after processing search return to index.html
-         
-            $('#search-modal').hide();
-            
+            //after processing search hide the modal
+             $('#search-modal').hide();     
           });
          } else {
           alert("Error: " + response.statusText);
