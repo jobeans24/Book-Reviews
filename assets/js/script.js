@@ -13,13 +13,13 @@ previousResults.forEach(result => {
         <div class="card-body">
             <h5 class="card-title">${result.title}</h5>
             <p class="card-text">${result.author}</p>
-            
+
         </div>
     `;
     previousResultsContainer.appendChild(card);
 });
 
-// To Do : Add NYT Best Sellers API fetch function
+
 // Function to fetch NYT Best Sellers API data
 function getBestSellersData() {
     // API endpoint
@@ -65,7 +65,7 @@ window.onload = function() {
     let AddreviewButton = document.querySelector('#add-review');
 
     AddreviewButton.addEventListener('click', function(){
-       window.location.href = 'review.html';
+        window.location.href = 'review.html';
     });
 };
 
@@ -78,8 +78,8 @@ searchForm.addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the default form submission behavior
     
     // Get the values from the search form inputs
-   const title = document.getElementById("search-title").value;
-   const author = document.getElementById("search-author").value;
+    const title = document.getElementById("search-title").value;
+    const author = document.getElementById("search-author").value;
     const genre = document.getElementById("search-genre").value;
     
     // Perform any necessary actions with the search values (e.g., fetch data, display results)
@@ -93,7 +93,10 @@ searchForm.addEventListener("submit", function(event) {
 function openSearchModal() {
     var modal = document.getElementById('search-modal');
     modal.style.display = 'block';
-        
+
+    //search submit event listener
+    $('#submitsearch').on('click', handleSearchBooks) 
+           
 };
 
 function openReviewModal() {
@@ -129,19 +132,20 @@ function getOpenLibaryData(title, author, genre) {
             console.log(data);
             
             //Todo: make use of data
-            renderSearchResults(data);
+                renderSearchResults(data);
             //after processing search return to index.html
-         
-            $('#search-modal').hide();
-            
+
+            $('#search-modal').hide();   
+
+            window.location.href ='index.html';
           });
          } else {
           alert("Error: " + response.statusText);
         };     
         });
     };
-//Function to render serch results
-function renderSearchResults(searchResults){
+//Function to render search results
+function renderSearchResults(searchResults) {
     if (searchResults.length === 0) {
         alert("Search results not available");
         return;
@@ -150,20 +154,21 @@ function renderSearchResults(searchResults){
     //clear previous search
     $('#searchResultsContainer').empty();
 
-searchResults.docs.forEach(doc => {
+    searchResults.docs.forEach(doc => {
+        
+        let resultsCard = $('<div>').css('background-color', 'white');
+        let title = $('<h5>').text('Title: ' + doc.title);
+        let author = $('<h5>').text('Author: ' + doc.author_name);
+        let ratings = $('<h5>').text('Ratings: ' + doc.rating_average);
+        //appending results to results card
+        resultsCard.append(title, author, ratings);
+        //appending results card to container
+        $('#searchResultsContainer').append(resultsCard);
+    });
+    };
+    
+    // Function to redirect the page to review.html on click of the Add review button
 
-    let resultsCard = $('<div>').css('background-color', 'white');
-    let title = $('<h5>').text('Title: ' + doc.title);
-    let author = $('<h5>').text('Author: ' + doc.author_name);
-    let ratings = $('<h5>').text('Ratings: ' + doc.rating_average);
-    //appending results to results card
-    resultsCard.append(title, author, ratings);
-    //appending results card to container
-    $('#searchResultsContainer').append(resultsCard);
-});
-};
-
-// Function to redirect the page to review.html on click of the Add review button
 
 window.onload = function() {
     let AddreviewButton = document.querySelector('#add-review');
@@ -171,6 +176,8 @@ window.onload = function() {
     AddreviewButton.addEventListener('click', function(){
         window.location.href = 'review.html';
     });
- //search submit event listener
- $('#submitsearch').on('click', handleSearchBooks) 
+
 };
+
+//search submit event listener
+$('#submitsearch').on('click', handleSearchBooks)
