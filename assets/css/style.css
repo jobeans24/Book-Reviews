@@ -7,7 +7,7 @@ header {
 }
 /* Form fields */
 .form-group {
-    margin-bottom: 20px; /* Add some space between the form fields */
+    margin-bottom: 20px;
 }
 /*Navigation bar */
 nav {
@@ -32,8 +32,8 @@ nav ul li a {
     
 }
 
-button {
-    
+.search-container button {
+    margin-bottom: 10px;
     background-color: #0078d0;
     border: 0;
     border-radius: 56px;
@@ -59,8 +59,20 @@ button:hover {
     background-image: linear-gradient(-180deg, #1D95C9 0%, #17759C 100%);
 }
 
+.search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+}
 
-/* Position the search container */
+.search-container img {
+    max-width: 100%; /* Ensure the image resizes to fit the container width */
+    height: auto; /* Maintain the aspect ratio of the image */
+}
+
 
 
 /* Position the results container */
@@ -68,6 +80,7 @@ button:hover {
     background-image: url(../images/bookshelf.png);
     background-size: cover;
     background-repeat: no-repeat;
+    color: white;
 }
 
 .results-container h2 {
@@ -79,18 +92,38 @@ button:hover {
     margin: 0; /* Remove margin */
 }
 
-
-
-
-/* makes the text in the container visible even with the background */
-  .resultscontainer p {
-    color: white; /* White text color */
-    text-align: center; /* Center the text */
-    font-size: 30px; /* Increase the font size */
-    padding: 10px; /* Add some padding */
-    background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background color */
-    margin: 0; /* Remove margin */
+.reviews-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
 }
+
+.reviews-container button {
+    margin-bottom: 10px;
+    background-color: #0078d0;
+    border: 0;
+    border-radius: 56px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    outline: 0;
+    padding: 16px 21px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+
 
 /* nyt container */
 .nyt-container {
@@ -108,6 +141,18 @@ button:hover {
     font-size: 20px; /* Increase the font size */
     padding: 10px; /* Add some padding */
     margin: 0; /* Remove margin */
+}
+
+
+
+.resultsCard {
+
+    background-color: transparent;
+    color: white !important;
+    border: 5px solid white;
+    width: 80%;
+    padding: 20px;
+    margin: 10px auto;
 }
 
        

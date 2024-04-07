@@ -21,43 +21,43 @@ previousResults.forEach(result => {
 
 // To Do : Add NYT Best Sellers API fetch function
 // Function to fetch NYT Best Sellers API data
-function getBestSellersData() {
-    // API endpoint
-    const bestSellersAPI = 'https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=AFYgXoe5pmVDuEA0fr01nWXwxIu38wYX';
-    console.log(bestSellersAPI);
+// function getBestSellersData() {
+//     // API endpoint
+//     const bestSellersAPI = 'https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=AFYgXoe5pmVDuEA0fr01nWXwxIu38wYX';
+//     console.log(bestSellersAPI);
 
     // Fetch data from the API
-    fetch(bestSellersAPI)
-        .then(function (response) {
-            if (response.ok) {
-                response.json().then(function (data) {
-                    console.log(data);
-                    // To Do: Make use of data
+//     fetch(bestSellersAPI)
+//         .then(function (response) {
+//             if (response.ok) {
+//                 response.json().then(function (data) {
+//                     console.log(data);
+//                     // To Do: Make use of data
 
-                    // Display books in the nyt-container
-                    const nytContainer = document.getElementById('nyt-container');
-                    data.results.books.forEach(book => {
-                        const card = document.createElement('div');
-                        card.classList.add('card');
-                        card.innerHTML = `
-                            <div class="card-body">
-                                <h5 class="card-title">${book.title}</h5>
-                                <p class="card-text">Author: ${book.author}</p>
-                                <p class="card-text">Genre: ${book.genre}</p>
-                            </div>
-                        `;
-                        nytContainer.appendChild(card);
-                    });
+//                     // Display books in the nyt-container
+//                     const nytContainer = document.getElementById('nyt-container');
+//                     data.results.books.forEach(book => {
+//                         const card = document.createElement('div');
+//                         card.classList.add('card');
+//                         card.innerHTML = `
+//                             <div class="card-body">
+//                                 <h5 class="card-title">${book.title}</h5>
+//                                 <p class="card-text">Author: ${book.author}</p>
+//                                 <p class="card-text">Genre: ${book.genre}</p>
+//                             </div>
+//                         `;
+//                         nytContainer.appendChild(card);
+//                     });
                     
-                });
-            } else {
-                alert('Error: ' + response.statusText);
-            }
-        });
-}
+//                 });
+//             } else {
+//                 alert('Error: ' + response.statusText);
+//             }
+//         });
+// }
 
 // Call the getBestSellersData function to fetch data from the NYT Best Sellers API
-getBestSellersData();
+// getBestSellersData();
 
 
 //To Do: Link review button to review.html
@@ -117,51 +117,84 @@ function handleSearchBooks(event) {
 
 };
 //Function for openlibrary
-function getOpenLibaryData(title, author, genre) {
-    
-    let openLibraryApi ='https://openlibrary.org/search.json?title=' + title + '&author=' + author + '&subject=' + genre;
-    console.log(openLibraryApi); 
+function getOpenLibraryData(title, author, genre) {
+    let openLibraryApi = 'https://openlibrary.org/search.json?title=' + title + '&author=' + author + '&subject=' + genre;
+    console.log(openLibraryApi);
 
     fetch(openLibraryApi)
         .then(function (response) {
-         if (response.ok){
-            response.json().then(function (data){
-            console.log(data);
-            
-            //Todo: make use of data
-            renderSearchResults(data);
-            //after processing search return to index.html
-         
-            $('#search-modal').hide();
-            
-          });
-         } else {
-          alert("Error: " + response.statusText);
-        };     
+            if (response.ok) {
+                response.json().then(function (data) {
+                    console.log(data);
+
+                    // Extract ISBN from each document
+                    data.docs.forEach(doc => {
+                        let isbn = doc.isbn[0];
+                        console.log(isbn) // Assuming ISBN is an array, get the first ISBN
+
+                        // Make another API call using the ISBN
+                        if (isbn) {
+                            fetch('https://covers.openlibrary.org/b/isbn/' + isbn + '-S.jpg')
+                                .then(function (response) {
+                                    if (response.ok) {
+                                        response.json().then(function (isbnData) {
+                                            console.log(isbnData);
+                                            // Process the data fetched using the ISBN
+                                        });
+                                    } else {
+                                        alert('Error: ' + response.statusText);
+                                    }
+                                });
+                        }
+                    });
+
+                    renderSearchResults(data, isbnData);
+                    $('#search-modal').hide();
+                });
+            } else {
+                alert("Error: " + response.statusText);
+            }
         });
-    };
+}
 //Function to render serch results
-function renderSearchResults(searchResults){
+function renderSearchResults(searchResults) {
     if (searchResults.length === 0) {
         alert("Search results not available");
         return;
-    };
+    }
 
-    //clear previous search
-    $('#searchResultsContainer').empty();
+    // Clear previous search results
+    document.getElementById('searchResultsContainer').innerHTML = '';
 
-searchResults.docs.forEach(doc => {
+    searchResults.docs.forEach(doc => {
+        const resultsCard = document.createElement('div');
+        resultsCard.classList.add('resultsCard');
+        
+        resultsCard.innerHTML = `
+            <div class="card-body">
+                <h5 class="card-title">Title: ${doc.title}</h5>
+                <h5 class="card-text">Author: ${doc.author_name}</h5>
+                <h5 class="card-text">Ratings: ${doc.rating_average}</h5>
+            </div>
+        `;
 
-    let resultsCard = $('<div>').css('background-color', 'white');
-    let title = $('<h5>').text('Title: ' + doc.title);
-    let author = $('<h5>').text('Author: ' + doc.author_name);
-    let ratings = $('<h5>').text('Ratings: ' + doc.rating_average);
-    //appending results to results card
-    resultsCard.append(title, author, ratings);
-    //appending results card to container
-    $('#searchResultsContainer').append(resultsCard);
-});
-};
+        document.getElementById('searchResultsContainer').appendChild(resultsCard);
+    });
+}
+
+// searchResults.docs.forEach(doc => {
+
+//     let resultsCard = $('<div>').addClass('resultCard');
+    
+//     let title = $('<h5>').text('Title: ' + doc.title);
+//     let author = $('<h5>').text('Author: ' + doc.author_name);
+//     let ratings = $('<h5>').text('Ratings: ' + doc.rating_average);
+//     //appending results to results card
+//     resultsCard.append(title, author, ratings);
+//     //appending results card to container
+//     $('#searchResultsContainer').append(resultsCard);
+// });
+// };
 
 // Function to redirect the page to review.html on click of the Add review button
 
