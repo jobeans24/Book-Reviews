@@ -155,7 +155,7 @@ function renderSearchResults(searchResults) {
     $('#searchResultsContainer').empty();
 
     searchResults.docs.forEach(doc => {
-        
+
         let resultsCard = $('<div>').css('background-color', 'white');
         let title = $('<h5>').text('Title: ' + doc.title);
         let author = $('<h5>').text('Author: ' + doc.author_name);
