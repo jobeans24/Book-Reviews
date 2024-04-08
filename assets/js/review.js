@@ -83,8 +83,10 @@ function displayBookTitles() {
 function displayReviewsForBook(bookTitle) {
     const reviews = JSON.parse(localStorage.getItem("reviews")) || {};
     const bookReviews = reviews[bookTitle];
-    const resultsContainer = document.querySelector(".reviewResultsContainer");
-    resultsContainer.innerHTML = ''; // Clear existing content
+    const resultsContainer = document.querySelector(".results-container");
+    resultsContainer.innerHTML = '';
+    
+    // Clear existing content
 
     bookReviews.forEach(review => {
         const div = document.createElement("div");
