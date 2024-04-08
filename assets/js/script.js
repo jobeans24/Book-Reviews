@@ -2,22 +2,40 @@
 //const APIkey = AIzaSyA9qnL3RBSyVXPew7iMQDfMDrtnAcZk780
 
 // Retrieve previous search results from local storage
-const previousResults = JSON.parse(localStorage.getItem('previousResults')) || [];
+function getPreviousSearchResults() {
+    let searchResults = localStorage.getItem("searchResults");
+    if (searchResults) {
+        return JSON.parse(searchResults);
+    }
+    return [];
+}
 
-// Display previous search results
-const previousResultsContainer = document.getElementById('previous-results');
-previousResults.forEach(result => {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    card.innerHTML = `
-        <div class="card-body">
-            <h5 class="card-title">${result.title}</h5>
-            <p class="card-text">${result.author}</p>
-            
-        </div>
-    `;
-    previousResultsContainer.appendChild(card);
-});
+// Call the getPreviousSearchResults function to retrieve the previous search results
+let previousSearchResults = getPreviousSearchResults();
+console.log(previousSearchResults);
+
+// Function to store search results in local storage
+function storeSearchResults(searchResults) {
+    localStorage.setItem("searchResults", JSON.stringify(searchResults));
+}
+
+// Function to display the previous search results
+function displayPreviousSearchResults() {
+    let previousSearchResults = getPreviousSearchResults();
+    let previousSearches = document.querySelector(".previous-results");
+    previousSearchResults.forEach(searchResult => {
+        let searchResultElement = document.createElement("div");
+        searchResultElement.textContent = searchResult;
+        previousSearches.appendChild(searchResultElement);
+    });
+}
+
+
+
+
+// function to store search results in a local storage and display them in the previous search results section
+
+
 
 // To Do : Add NYT Best Sellers API fetch function
 // Function to fetch NYT Best Sellers API data
@@ -221,4 +239,13 @@ window.onload = function() {
     });
  //search submit event listener
  $('#submitsearch').on('click', handleSearchBooks) 
+};
+
+// Function add review button
+window.onload = function() {
+    let AddreviewButton = document.querySelector('#add-review');
+
+    AddreviewButton.addEventListener('click', function(){
+        window.location.href = 'review.html';
+    });
 };
