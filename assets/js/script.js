@@ -284,10 +284,10 @@ function renderSearchResults(searchResults) {
                     })
                 };
     });
+
 }
 
 //search submit event listener
 $('#submitsearch').on('click', handleSearchBooks)
-
 
 
