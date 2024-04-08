@@ -25,7 +25,7 @@ function getBestSellersData() {
     // API endpoint
     const bestSellersAPI = 'https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=AFYgXoe5pmVDuEA0fr01nWXwxIu38wYX';
     console.log(bestSellersAPI);
-  
+
     // Fetch data from the API
     fetch(bestSellersAPI)
         .then(function (response) {
@@ -123,7 +123,30 @@ function handleSearchBooks(event) {
 //Function for openlibrary
 function getOpenLibaryData(title, author, genre) {
     
-    let openLibraryApi ='https://openlibrary.org/search.json?title=' + title + '&author=' + author + '&subject=' + genre;
+    let openLibraryApi ='https://openlibrary.org/search.json?';
+    //if else statment to sort provided parameters
+    if (title) {
+        openLibraryApi += 'title=' + title;
+        if (author) {
+            openLibraryApi += '&author=' + author;
+            if (genre) {
+                openLibraryApi += '&subject=' + genre           
+             }
+        } else if (genre) {
+            openLibraryApi += '&subject=' + genre
+        }
+    } else if (author) {
+        openLibraryApi += 'author=' + author;
+        if (genre) {
+            openLibraryApi += '&subject=' + genre;
+        }
+    } else if (genre) {
+        openLibraryApi += 'subject=' + genre;
+    } else {
+        alert('Must input at least one search parameter');
+        return;
+    }
+    
     console.log(openLibraryApi); 
 
     fetch(openLibraryApi)
@@ -132,21 +155,21 @@ function getOpenLibaryData(title, author, genre) {
             response.json().then(function (data){
             console.log(data);
             
+        
             //Todo: make use of data
-                renderSearchResults(data);
+            renderSearchResults(data);
             //after processing search return to index.html
-
-            $('#search-modal').hide();   
-
-            window.location.href ='index.html';
+         
+            $('#search-modal').hide();
+            
           });
          } else {
           alert("Error: " + response.statusText);
         };     
         });
     };
-//Function to render search results
-function renderSearchResults(searchResults) {
+//Function to render serch results
+function renderSearchResults(searchResults){
     if (searchResults.length === 0) {
         alert("Search results not available");
         return;
@@ -157,18 +180,18 @@ function renderSearchResults(searchResults) {
 
     searchResults.docs.forEach(doc => {
 
-        let resultsCard = $('<div>').css('background-color', 'white');
-        let title = $('<h5>').text('Title: ' + doc.title);
-        let author = $('<h5>').text('Author: ' + doc.author_name);
-        let ratings = $('<h5>').text('Ratings: ' + doc.rating_average);
-        //appending results to results card
-        resultsCard.append(title, author, ratings);
-        //appending results card to container
-        $('#searchResultsContainer').append(resultsCard);
-    });
-    };
-    
-    // Function to redirect the page to review.html on click of the Add review button
+    let resultsCard = $('<div>').css('background-color', 'white');
+    let title = $('<h5>').text('Title: ' + doc.title);
+    let author = $('<h5>').text('Author: ' + doc.author_name);
+    let ratings = $('<h5>').text('Ratings: ' + doc.rating_average);
+    //appending results to results card
+    resultsCard.append(title, author, ratings);
+    //appending results card to container
+    $('#searchResultsContainer').append(resultsCard);
+});
+};
+
+// Function to redirect the page to review.html on click of the Add review button
 
 
 window.onload = function() {
