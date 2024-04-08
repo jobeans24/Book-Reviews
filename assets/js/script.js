@@ -150,16 +150,22 @@ function getOpenLibaryData(title, author, genre) {
             response.json().then(function (data){
             console.log(data);
             
+        
             //Todo: make use of data
             renderSearchResults(data);
             //after processing search hide the modal
-             $('#search-modal').hide();     
-          });
+             $('#search-modal').hide();    
+            });
          } else {
           alert("Error: " + response.statusText);
-        };     
-        });
-    };
+        } 
+    }); 
+};
+
+        
+    
+
+
 //Function to render serch results
 function renderSearchResults(searchResults){
     if (searchResults.length === 0) {
@@ -180,6 +186,29 @@ searchResults.docs.forEach(doc => {
     resultsCard.append(title, author, ratings);
     //appending results card to container
     $('#searchResultsContainer').append(resultsCard);
+    //Extract id from each document
+            //data.docs.forEach(doc => {
+                let id = doc.cover_i;
+                console.log(id);
+
+            //Make another API call using the id
+                if (id) {
+                    fetch('https://covers.openlibrary.org/b/id/' + id + '-M.jpg')
+                    .then(function (response){
+                        if (response.ok) {
+                            return response.blob();
+                        } else {
+                            alert("Error fetching cover image");
+                        }
+                    })
+                    .then(function(blob){
+                        //creating image element and src
+                        let img =document.createElement('img');
+                        img.src =URL.createObjectURL(blob);
+                        //append to resultsCard
+                        resultsCard.append(img);
+                    })
+                };
 });
 };
 
