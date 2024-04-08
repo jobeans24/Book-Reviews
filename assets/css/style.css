@@ -7,7 +7,7 @@ header {
 }
 /* Form fields */
 .form-group {
-    margin-bottom: 20px; /* Add some space between the form fields */
+    margin-bottom: 20px;
 }
 /*Navigation bar */
 nav {
@@ -20,20 +20,21 @@ nav {
     justify-content: center; /* Center items vertically */
 }
 
-/* Navigation links */
-nav ul li a {
-    color: white;  /* White text color */
-    text-decoration: none; /* Remove underline from links */
-    display: inline-flex; /* Align the links horizontally */
-    justify-content: space-between;  /* Add space between the links */
-    padding: 14px 16px; /* Add padding to the links */
-    font-size: 20px; /* Increase the font size */
-    align-items: center; /* Align the links vertically */   
-    
+.modal {
+    display: none;
+    width: 100%;
+    height: 100%;
 }
 
-button {
-    
+.modal-content {
+    background-color: lightsteelblue;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.search-container button {
+    margin-bottom: 10px;
     background-color: #0078d0;
     border: 0;
     border-radius: 56px;
@@ -59,6 +60,20 @@ button:hover {
     background-image: linear-gradient(-180deg, #1D95C9 0%, #17759C 100%);
 }
 
+.search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+}
+
+.search-container img {
+    max-width: 100%; 
+    height: auto; 
+}
+
 .card {
     background-color: lightgray;
     border-radius: 10px;
@@ -69,57 +84,66 @@ button:hover {
     font-size: 18px;
     margin-bottom: 10px;
 }
-/* Position the search container */
 
-
-/* Position the results container */
 .results-container {
     background-image: url(../images/bookshelf.png);
     background-size: cover;
     background-repeat: no-repeat;
-}
-
-.results-container h2 {
-    color: white; /* White text color */
-    text-align: center; /* Center the text */
-    font-size: 30px; /* Increase the font size */
-    padding: 10px; /* Add some padding */
-    background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background color */
-    margin: 0; /* Remove margin */
+    color: white;
 }
 
 
-
-
-/* makes the text in the container visible even with the background */
-  .resultscontainer p {
-    color: white; /* White text color */
-    text-align: center; /* Center the text */
-    font-size: 20px; /* Increase the font size */
-    padding: 10px; /* Add some padding */
-    background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background color */
-    margin: 0; /* Remove margin */
+.reviews-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
 }
 
-/* nyt container */
-.nyt-container {
-    color: white; /* White text color */
-    padding: 10px; /* Add some padding */
-    margin: 10px; /* Add some margin */
-    position: absolute;
-    bottom: 0;
+.reviews-container button {
+    margin-bottom: 10px;
+    background-color: #0078d0;
+    border: 0;
+    border-radius: 56px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    outline: 0;
+    padding: 16px 21px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
-.nyt-results {
-    color: white; /* White text color */
-    text-align: start; /* Center the text */
-    font-size: 20px; /* Increase the font size */
-    padding: 10px; /* Add some padding */
-    margin: 0; /* Remove margin */
+.resultsCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    color: white !important;
+    border: 2px solid white;
+    width: 100%;
+    padding: 20px;
+    margin: 10px auto;
 }
 
-       
-
+.results-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    display: block;
+    height: auto;
+    width: auto;
+}
 
 /* Position the footer */
     footer {
