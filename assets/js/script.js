@@ -32,7 +32,6 @@ function getBestSellersData() {
             if (response.ok) {
                 response.json().then(function (data) {
                     console.log(data);
-                    // To Do: Make use of data
 
                     // Display books in the nyt-container
                     const nytContainer = document.getElementById('nyt-container');
@@ -44,7 +43,7 @@ function getBestSellersData() {
                             <div class="card-body">
                                 <h5 class="card-title">${book.title}</h5>
                                 <p class="card-text">Author: ${book.author}</p>
-                                <p class="card-text">Genre: ${book.genre}</p>
+                                <p class="card-text">Publisher: ${book.publisher}</p>
                             </div>
                         `;
                         nytContainer.appendChild(card);
@@ -188,6 +187,29 @@ function renderSearchResults(searchResults){
     resultsCard.append(title, author, ratings);
     //appending results card to container
     $('#searchResultsContainer').append(resultsCard);
+    //Extract id from each document
+            //data.docs.forEach(doc => {
+                let id = doc.cover_i;
+                console.log(id);
+
+            //Make another API call using the id
+                if (id) {
+                    fetch('https://covers.openlibrary.org/b/id/' + id + '-M.jpg')
+                    .then(function (response){
+                        if (response.ok) {
+                            return response.blob();
+                        } else {
+                            alert("Error fetching cover image");
+                        }
+                    })
+                    .then(function(blob){
+                        //creating image element and src
+                        let img =document.createElement('img');
+                        img.src =URL.createObjectURL(blob);
+                        //append to resultsCard
+                        resultsCard.append(img);
+                    })
+                };
 });
 };
 
