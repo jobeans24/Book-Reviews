@@ -115,10 +115,6 @@ function openSearchModal() {
         
 };
 
-function openReviewModal() {
-    var modal = document.getElementById('review-modal');
-    modal.style.display = 'block';
-}
 
 //handle search for books
 function handleSearchBooks(event) {

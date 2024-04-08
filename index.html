@@ -33,6 +33,31 @@
                 <button id="search-button" onclick="openSearchModal()">Click to Search</button>
                 <h5>Previous Searches:</h5>
                 <div class="previous-results"></div>
+
+                <div id="search-modal" class="modal">
+                    <div class="modal-content">
+                        <!-- Search Form -->
+                        
+                        <h2 style="justify-content: center;">Search Book</h2>
+                        <form id="searchForm">
+                            <div class="form-group">
+                                <label for="search-title">Title:</label>
+                                <input type="text" id="search-title" name="search-title">
+                            </div>
+                            <div class="form-group">
+                                <label for="search-author">Author:</label>
+                                <input type="text" id="search-author" name="search-author">
+                            </div>
+                            <div class="form-group">
+                                <label for="search-genre">Genre:</label>
+                                <input type="text" id="search-genre" name="search-genre">
+                            </div>
+                            <div class="form-group">
+                                <button id="submitsearch" type="submit">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="col-md-8 results-container">
                 <div id="searchResultsContainer">
@@ -46,72 +71,7 @@
                 <img src="./assets/images/bookreview.png" alt="Book Review">
             </div>
         </div>
-
-        <div id="search-modal" class="modal" style="background-color: lightsteelblue; border-radius: 10px;">
-                <div class="modal-content">
-                    <!-- Search Form -->
-                    
-                    <h2 style="justify-content: center;">Search Book</h2>
-                    <form id="searchForm">
-                        <div class="form-group">
-                            <label for="search-title">Title:</label>
-                            <input type="text" id="search-title" name="search-title">
-                        </div>
-                        <div class="form-group">
-                            <label for="search-author">Author:</label>
-                            <input type="text" id="search-author" name="search-author">
-                        </div>
-                        <div class="form-group">
-                            <label for="search-genre">Genre:</label>
-                            <input type="text" id="search-genre" name="search-genre">
-                        </div>
-                        <div class="form-group">
-                            <button id="submitsearch" type="submit">Search</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            
-               
-            
-            
-
-            <div id="review-modal" class="modal">
-                <div class="modal-content">
-                    <h2
-                        style="display: block; font-family: 'Times New Roman', Times, serif; background-color: lightyellow;">
-                        Add Review</h2>
-                    <form>
-                        <div class="form-group">
-                            <label for="username">Username:</label>
-                            <input type="text" id="username" name="username" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="book-title">Book Title:</label>
-                            <input type="text" id="book-title" name="book-title" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="book-genre">Book Genre:</label>
-                            <input type="text" id="book-genre" name="book-genre" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="book-author">Book Author:</label>
-                            <input type="text" id="book-author" name="book-author" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="summary">Personal Summary/Thoughts:</label>
-                            <textarea id="summary" name="summary" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-    <!-- Main Content -->
-
-    <!-- JavaScript -->
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
