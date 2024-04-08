@@ -23,9 +23,8 @@
             <p>Find your next favorite book and share your thoughts and opinions about it and other books you've read!
             </p>
         </nav>
-        <!-- Title -->
+    </header>   
 
-<<<<<<< HEAD
         <div class="row vh-100">
             <div class="col-md-2 search-container d-flex flex-column">
                 <h4>Search Book</h4>
@@ -34,33 +33,21 @@
                 <button id="search-button" onclick="openSearchModal()">Click to Search</button>
                 <h5>Previous Searches:</h5>
                 <div class="previous-results"></div>
-=======
->>>>>>> 1059975245ab3c0542650442022e88a82b6f0b7f
-
-    </header>
-
-    <div class="row vh-100">
-        <div class="col-md-2 search-container d-flex flex-column text-center">
-            <h4>Search Book</h4>
-            <img src="./assets/images/bookfinder.png" alt="Book Image">
-            <p>Search for books by title, author, or genre. Find your next favorite book!</p>
-            <button id="search-button" onclick="openSearchModal()">Click to Search</button>
-
-            <!-- Previous Searches Card -->
-            
-        <div class="card mt-4" id="previousSearchesCard">
-            <div class="card-body">
-                <h5 class="card-title">Previous Searches</h5>
-                <div id="previousSearches" class="previous-results">
-                     <!-- Previous searches will be dynamically added here -->
-                    
+            </div>
+            <div class="col-md-8 results-container">
+                <div id="searchResultsContainer">
+        
                 </div>
+            </div>
+            <div class="col-md-2 reviews-container d-flex flex-column">
+                <h4>Read Reviews</h4>
+                <p>Add and submit book reviews. Share your thoughts and opinions about your favorite books!</p>
+                <button id="add-review" onclick="redirectToReviewPage()">Add Review</button>
+                <img src="./assets/images/bookreview.png" alt="Book Review">
             </div>
         </div>
 
-
-
-            <div id="search-modal" class="modal" style="background-color: lightsteelblue; border-radius: 10px;">
+        <div id="search-modal" class="modal" style="background-color: lightsteelblue; border-radius: 10px;">
                 <div class="modal-content">
                     <!-- Search Form -->
                     
@@ -85,20 +72,10 @@
                 </div>
             </div>
 
-            </div>
-            <div class="col-md-8 results-container">
-                <div id="searchResultsContainer"></div>
-               <!-- <div class="" id="nyt-container">
-                    <h4>New York Times Best Sellers</h4>
-                    <p>Check out the latest best sellers from the New York Times!</p>
-
-                </div>-->
-            </div>
-            <div class="col-md-2 reviews-container d-flex flex-column">
-                <h4>Read Reviews</h4>
-                <p>Add and submit book reviews. Share your thoughts and opinions about your favorite books!</p>
-                <button id="add-review" onclick="redirectToReviewPage()">Add Review</button>
-                <img src="./assets/images/bookreview.png" alt="Book Review">
+            
+               
+            
+            
 
             <div id="review-modal" class="modal">
                 <div class="modal-content">
@@ -132,10 +109,6 @@
                     </form>
                 </div>
             </div>
-
-        </div>
-    </div>
-
     <!-- Main Content -->
 
     <!-- JavaScript -->
