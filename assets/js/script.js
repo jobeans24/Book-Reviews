@@ -13,7 +13,7 @@ previousResults.forEach(result => {
         <div class="card-body">
             <h5 class="card-title">${result.title}</h5>
             <p class="card-text">${result.author}</p>
-            
+
         </div>
     `;
     previousResultsContainer.appendChild(card);
@@ -48,7 +48,7 @@ function getBestSellersData() {
                         `;
                         nytContainer.appendChild(card);
                     });
-
+                    
                 });
             } else {
                 alert('Error: ' + response.statusText);
@@ -61,11 +61,11 @@ getBestSellersData();
 
 
 //To Do: Link review button to review.html
-window.onload = function () {
+window.onload = function() {
     let AddreviewButton = document.querySelector('#add-review');
 
     AddreviewButton.addEventListener('click', function(){
-       window.location.href = 'review.html';
+        window.location.href = 'review.html';
     });
 };
 
@@ -74,16 +74,16 @@ window.onload = function () {
 const searchForm = document.querySelector("form");
 
 // Add event listener for form submission
-searchForm.addEventListener("submit", function (event) {
+searchForm.addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the default form submission behavior
-
+    
     // Get the values from the search form inputs
     const title = document.getElementById("search-title").value;
     const author = document.getElementById("search-author").value;
     const genre = document.getElementById("search-genre").value;
-
+    
     // Perform any necessary actions with the search values (e.g., fetch data, display results)
-
+    
     // Reset the form after submission
     searchForm.reset();
 });
@@ -93,7 +93,10 @@ searchForm.addEventListener("submit", function (event) {
 function openSearchModal() {
     var modal = document.getElementById('search-modal');
     modal.style.display = 'block';
-        
+
+    //search submit event listener
+    $('#submitsearch').on('click', handleSearchBooks) 
+           
 };
 
 function openReviewModal() {
@@ -108,7 +111,7 @@ function handleSearchBooks(event) {
     let title = $('#search-title').val().trim();
     let author = $('#search-author').val().trim();
     let genre = $('#search-genre').val().trim();
-
+    
     console.log('Title', title);
     console.log('Author', author);
     console.log('Genre', genre);
@@ -118,30 +121,30 @@ function handleSearchBooks(event) {
 };
 //Function for openlibrary
 function getOpenLibaryData(title, author, genre) {
-
-    let openLibraryApi = 'https://openlibrary.org/search.json?title=' + title + '&author=' + author + '&subject=' + genre;
-    console.log(openLibraryApi);
+    
+    let openLibraryApi ='https://openlibrary.org/search.json?title=' + title + '&author=' + author + '&subject=' + genre;
+    console.log(openLibraryApi); 
 
     fetch(openLibraryApi)
         .then(function (response) {
-            if (response.ok) {
-                response.json().then(function (data) {
-                    console.log(data);
-
-                    //Todo: make use of data
-                    renderSearchResults(data);
-                    //after processing search return to index.html
-
-                    $('#search-modal').hide();
-
-                });
-            } else {
-                alert("Error: " + response.statusText);
-            };
+         if (response.ok){
+            response.json().then(function (data){
+            console.log(data);
+            
+            //Todo: make use of data
+            renderSearchResults(data);
+            //after processing search return to index.html
+         
+            $('#search-modal').hide();
+            
+          });
+         } else {
+          alert("Error: " + response.statusText);
+        };     
         });
-};
+    };
 //Function to render serch results
-function renderSearchResults(searchResults) {
+function renderSearchResults(searchResults){
     if (searchResults.length === 0) {
         alert("Search results not available");
         return;
@@ -160,18 +163,43 @@ function renderSearchResults(searchResults) {
     resultsCard.append(title, author, ratings);
     //appending results card to container
     $('#searchResultsContainer').append(resultsCard);
+    //Extract id from each document
+            //data.docs.forEach(doc => {
+                let id = doc.cover_i;
+                console.log(id);
+
+            //Make another API call using the id
+                if (id) {
+                    fetch('https://covers.openlibrary.org/b/id/' + id + '-M.jpg')
+                    .then(function (response){
+                        if (response.ok) {
+                            return response.blob();
+                        } else {
+                            alert("Error fetching cover image");
+                        }
+                    })
+                    .then(function(blob){
+                        //creating image element and src
+                        let img =document.createElement('img');
+                        img.src =URL.createObjectURL(blob);
+                        //append to resultsCard
+                        resultsCard.append(img);
+                    })
+                };
 });
 };
 
 // Function to redirect the page to review.html on click of the Add review button
 
 
-window.onload = function () {
+window.onload = function() {
     let AddreviewButton = document.querySelector('#add-review');
 
-    AddreviewButton.addEventListener('click', function () {
+    AddreviewButton.addEventListener('click', function(){
         window.location.href = 'review.html';
     });
- //search submit event listener
- $('#submitsearch').on('click', handleSearchBooks) 
+
 };
+
+//search submit event listener
+$('#submitsearch').on('click', handleSearchBooks)
