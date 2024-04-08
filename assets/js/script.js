@@ -25,7 +25,7 @@ function getBestSellersData() {
     // API endpoint
     const bestSellersAPI = 'https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=AFYgXoe5pmVDuEA0fr01nWXwxIu38wYX';
     console.log(bestSellersAPI);
-
+  
     // Fetch data from the API
     fetch(bestSellersAPI)
         .then(function (response) {
@@ -36,6 +36,7 @@ function getBestSellersData() {
 
                     // Display books in the nyt-container
                     const nytContainer = document.getElementById('nyt-container');
+                    
                     data.results.books.forEach(book => {
                         const card = document.createElement('div');
                         card.classList.add('card');
@@ -181,3 +182,4 @@ window.onload = function() {
 
 //search submit event listener
 $('#submitsearch').on('click', handleSearchBooks)
+
