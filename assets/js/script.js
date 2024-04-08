@@ -241,11 +241,3 @@ window.onload = function() {
  $('#submitsearch').on('click', handleSearchBooks) 
 };
 
-// Function add review button
-window.onload = function() {
-    let AddreviewButton = document.querySelector('#add-review');
-
-    AddreviewButton.addEventListener('click', function(){
-        window.location.href = 'review.html';
-    });
-};
