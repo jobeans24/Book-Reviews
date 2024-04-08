@@ -39,7 +39,21 @@ document.getElementById('review-form').addEventListener('submit', function(event
 
     // Save the new review data to local storage
     saveReviewData(newReview);
+
+    resetFormAndHide();
+
+    updateDisplaySections();
 });
+
+function resetFormAndHide() {
+    document.getElementById('review-form').reset();
+
+    document.getElementById('review-modal').style.display = 'none';
+}
+
+function updateDisplaySections() {
+    displayBookTitles();
+}
 
 function saveReviewData(newReview) {
     let reviews = JSON.parse(localStorage.getItem("reviews")) || {};
@@ -58,6 +72,7 @@ function displayBookTitles() {
 
     Object.keys(reviews).forEach(bookTitle => {
         const button = document.createElement("button");
+        button.classList.add('previous-search-button')
         button.textContent = bookTitle;
         button.addEventListener("click", () => displayReviewsForBook(bookTitle));
         searchHistoryDiv.appendChild(button);
