@@ -13,18 +13,19 @@ previousResults.forEach(result => {
         <div class="card-body">
             <h5 class="card-title">${result.title}</h5>
             <p class="card-text">${result.author}</p>
-            
+
         </div>
     `;
     previousResultsContainer.appendChild(card);
 });
 
-// To Do : Add NYT Best Sellers API fetch function
+
 // Function to fetch NYT Best Sellers API data
 function getBestSellersData() {
     // API endpoint
     const bestSellersAPI = 'https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=AFYgXoe5pmVDuEA0fr01nWXwxIu38wYX';
     console.log(bestSellersAPI);
+
     // Fetch data from the API
     fetch(bestSellersAPI)
         .then(function (response) {
@@ -35,6 +36,7 @@ function getBestSellersData() {
 
                     // Display books in the nyt-container
                     const nytContainer = document.getElementById('nyt-container');
+                    
                     data.results.books.forEach(book => {
                         const card = document.createElement('div');
                         card.classList.add('card');
@@ -64,7 +66,7 @@ window.onload = function() {
     let AddreviewButton = document.querySelector('#add-review');
 
     AddreviewButton.addEventListener('click', function(){
-       window.location.href = 'review.html';
+        window.location.href = 'review.html';
     });
 };
 
@@ -77,8 +79,8 @@ searchForm.addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the default form submission behavior
     
     // Get the values from the search form inputs
-   const title = document.getElementById("search-title").value;
-   const author = document.getElementById("search-author").value;
+    const title = document.getElementById("search-title").value;
+    const author = document.getElementById("search-author").value;
     const genre = document.getElementById("search-genre").value;
     
     // Perform any necessary actions with the search values (e.g., fetch data, display results)
@@ -92,7 +94,10 @@ searchForm.addEventListener("submit", function(event) {
 function openSearchModal() {
     var modal = document.getElementById('search-modal');
     modal.style.display = 'block';
-        
+
+    //search submit event listener
+    $('#submitsearch').on('click', handleSearchBooks) 
+           
 };
 
 function openReviewModal() {
@@ -153,19 +158,16 @@ function getOpenLibaryData(title, author, genre) {
         
             //Todo: make use of data
             renderSearchResults(data);
-            //after processing search hide the modal
-             $('#search-modal').hide();    
-            });
+            //after processing search return to index.html
+         
+            $('#search-modal').hide();
+            
+          });
          } else {
           alert("Error: " + response.statusText);
-        } 
-    }); 
-};
-
-        
-    
-
-
+        };     
+        });
+    };
 //Function to render serch results
 function renderSearchResults(searchResults){
     if (searchResults.length === 0) {
@@ -176,7 +178,7 @@ function renderSearchResults(searchResults){
     //clear previous search
     $('#searchResultsContainer').empty();
 
-searchResults.docs.forEach(doc => {
+    searchResults.docs.forEach(doc => {
 
     let resultsCard = $('<div>').css('background-color', 'white');
     let title = $('<h5>').text('Title: ' + doc.title);
@@ -186,33 +188,11 @@ searchResults.docs.forEach(doc => {
     resultsCard.append(title, author, ratings);
     //appending results card to container
     $('#searchResultsContainer').append(resultsCard);
-    //Extract id from each document
-            //data.docs.forEach(doc => {
-                let id = doc.cover_i;
-                console.log(id);
-
-            //Make another API call using the id
-                if (id) {
-                    fetch('https://covers.openlibrary.org/b/id/' + id + '-M.jpg')
-                    .then(function (response){
-                        if (response.ok) {
-                            return response.blob();
-                        } else {
-                            alert("Error fetching cover image");
-                        }
-                    })
-                    .then(function(blob){
-                        //creating image element and src
-                        let img =document.createElement('img');
-                        img.src =URL.createObjectURL(blob);
-                        //append to resultsCard
-                        resultsCard.append(img);
-                    })
-                };
 });
 };
 
 // Function to redirect the page to review.html on click of the Add review button
+
 
 window.onload = function() {
     let AddreviewButton = document.querySelector('#add-review');
@@ -220,6 +200,9 @@ window.onload = function() {
     AddreviewButton.addEventListener('click', function(){
         window.location.href = 'review.html';
     });
- //search submit event listener
- $('#submitsearch').on('click', handleSearchBooks) 
+
 };
+
+//search submit event listener
+$('#submitsearch').on('click', handleSearchBooks)
+
