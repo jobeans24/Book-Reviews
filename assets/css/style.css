@@ -74,6 +74,16 @@ button:hover {
     height: auto; 
 }
 
+.previous-search-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.previous-search-button button {
+    text-align: center;
+}
+
 .card {
     background-color: lightgray;
     border-radius: 10px;

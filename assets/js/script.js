@@ -128,9 +128,64 @@ function handleSearchBooks(event) {
     console.log('Author', author);
     console.log('Genre', genre);
 
+    let searchParams = { title, author, genre };
+
+    let previousSearches = JSON.parse(localStorage.getItem('previousSearches')) || [];
+
+    previousSearches.push(searchParams);
+
+    localStorage.setItem('previousSearches', JSON.stringify(previousSearches));
+
     getOpenLibaryData(title, author, genre);
 
 };
+
+document.addEventListener('DOMContentLoaded', function() {
+    function displayPreviousSearches() {
+        let previousSearches = JSON.parse(localStorage.getItem('previousSearches')) || [];
+        let previousResultsContainer = document.getElementById('previous-results');
+    
+        if (previousResultsContainer) {
+        previousResultsContainer.innerHTML = ''; // Clear existing buttons
+    
+        previousSearches.forEach((search, index) => {
+            let button = document.createElement('button');
+            button.classList.add('previous-search-button');
+            button.textContent = search.title || "Search " + (index + 1);
+            button.onclick = function() { displaySearchResults(search); };
+            previousResultsContainer.appendChild(button);
+        });
+        } else {
+        console.error("Element with ID 'previous-results' not found.");
+        }
+    }
+
+    function displaySearchResults(searchParams) {
+        // Use the searchParams to fetch or retrieve the search results
+        // For demonstration, this will just log the searchParams
+        console.log("Displaying results for:", searchParams);
+        
+        // Assuming getOpenLibaryData can be modified or used as is to display results based on searchParams
+        getOpenLibaryData(searchParams.title, searchParams.author, searchParams.genre);
+
+        const resultsContainer = document.getElementById('searchResultsContainer');
+        resultsContainer.innerHTML = `<p>Search Results for: ${searchParams.title}</p>`;
+    }
+
+    displayPreviousSearches();
+
+})
+
+
+function displaySearchResults(searchParams) {
+    // Use the searchParams to fetch or retrieve the search results
+    // For demonstration, this will just log the searchParams
+    console.log("Displaying results for:", searchParams);
+    
+    // Assuming getOpenLibaryData can be modified or used as is to display results based on searchParams
+    getOpenLibaryData(searchParams.title, searchParams.author, searchParams.genre);
+}
+
 function getOpenLibaryData(title, author, genre) {
     
     let openLibraryApi ='https://openlibrary.org/search.json?';
