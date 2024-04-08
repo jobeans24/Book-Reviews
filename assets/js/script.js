@@ -240,4 +240,3 @@ window.onload = function() {
  //search submit event listener
  $('#submitsearch').on('click', handleSearchBooks) 
 };
-
