@@ -5,63 +5,21 @@
 const previousResults = JSON.parse(localStorage.getItem('previousResults')) || [];
 
 // Display previous search results
-const previousResultsContainer = document.querySelector('.previous-results');
-if (previousResultsContainer) {
-    previousResults.forEach(result => {
-        const resultItem = document.createElement('div');
-        resultItem.textContent = result;
-        previousResultsContainer.appendChild(resultItem);
-    });
-}
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    const previousSearches = [];
-    const previousSearchesContainer = document.getElementById("previousSearches");
-
-    if (previousSearchesContainer) {
-        updatePreviousSearches();
-
-        function updatePreviousSearches() {
-            previousSearchesContainer.innerHTML = ""; // Clear previous content
-
-            previousSearches.forEach(search => {
-                const searchItem = document.createElement("div");
-                searchItem.textContent = search;
-                previousSearchesContainer.appendChild(searchItem);
-            });
-        }
-    }
-    else {
-        console.error("Element with ID 'previousSearches' not found.");
-    }
-
-    searchForm = document.getElementById("searchForm");
-    if (searchForm) {
-        searchForm.addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevent form submission
-
-            // Get user input from the search form
-            const searchTitle = document.getElementById("search-title").value.trim();
-            const searchAuthor = document.getElementById("search-author").value.trim();
-            const searchGenre = document.getElementById("search-genre").value.trim();
-
-            // Construct search query based on user input
-            const searchQuery = `${searchTitle} ${searchAuthor} ${searchGenre}`.trim();
-
-            if (searchQuery) {
-                previousSearches.push(searchQuery);
-                updatePreviousSearches();
-                closeSearchModal(); // Assuming you have a function to close the modal
-                searchForm.reset(); // Reset the form
-            }
-        });
-    } else {
-        console.error("Element with ID 'searchForm' not found.");
-    }
+const previousResultsContainer = document.getElementById('previous-results');
+previousResults.forEach(result => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.innerHTML = `
+        <div class="card-body">
+            <h5 class="card-title">${result.title}</h5>
+            <p class="card-text">${result.author}</p>
+            
+        </div>
+    `;
+    previousResultsContainer.appendChild(card);
 });
 
-// To Do : Add NYT Best Sellers API fetch function
+
 // Function to fetch NYT Best Sellers API data
 function getBestSellersData() {
     // API endpoint
@@ -74,10 +32,10 @@ function getBestSellersData() {
             if (response.ok) {
                 response.json().then(function (data) {
                     console.log(data);
-                    // To Do: Make use of data
 
                     // Display books in the nyt-container
                     const nytContainer = document.getElementById('nyt-container');
+                    
                     data.results.books.forEach(book => {
                         const card = document.createElement('div');
                         card.classList.add('card');
@@ -85,7 +43,7 @@ function getBestSellersData() {
                             <div class="card-body">
                                 <h5 class="card-title">${book.title}</h5>
                                 <p class="card-text">Author: ${book.author}</p>
-                                <p class="card-text">Genre: ${book.genre}</p>
+                                <p class="card-text">Publisher: ${book.publisher}</p>
                             </div>
                         `;
                         nytContainer.appendChild(card);
@@ -106,8 +64,8 @@ getBestSellersData();
 window.onload = function () {
     let AddreviewButton = document.querySelector('#add-review');
 
-    AddreviewButton.addEventListener('click', function () {
-        window.location.href = 'review.html';
+    AddreviewButton.addEventListener('click', function(){
+       window.location.href = 'review.html';
     });
 };
 
@@ -135,7 +93,7 @@ searchForm.addEventListener("submit", function (event) {
 function openSearchModal() {
     var modal = document.getElementById('search-modal');
     modal.style.display = 'block';
-
+        
 };
 
 function openReviewModal() {
@@ -194,18 +152,19 @@ function renderSearchResults(searchResults) {
 
     searchResults.docs.forEach(doc => {
 
-        let resultsCard = $('<div>').css('background-color', 'white');
-        let title = $('<h5>').text('Title: ' + doc.title);
-        let author = $('<h5>').text('Author: ' + doc.author_name);
-        let ratings = $('<h5>').text('Ratings: ' + doc.rating_average);
-        //appending results to results card
-        resultsCard.append(title, author, ratings);
-        //appending results card to container
-        $('#searchResultsContainer').append(resultsCard);
-    });
+    let resultsCard = $('<div>').css('background-color', 'white');
+    let title = $('<h5>').text('Title: ' + doc.title);
+    let author = $('<h5>').text('Author: ' + doc.author_name);
+    let ratings = $('<h5>').text('Ratings: ' + doc.rating_average);
+    //appending results to results card
+    resultsCard.append(title, author, ratings);
+    //appending results card to container
+    $('#searchResultsContainer').append(resultsCard);
+});
 };
 
 // Function to redirect the page to review.html on click of the Add review button
+
 
 window.onload = function () {
     let AddreviewButton = document.querySelector('#add-review');
@@ -213,6 +172,6 @@ window.onload = function () {
     AddreviewButton.addEventListener('click', function () {
         window.location.href = 'review.html';
     });
-    //search submit event listener
-    $('#submitsearch').on('click', handleSearchBooks)
+ //search submit event listener
+ $('#submitsearch').on('click', handleSearchBooks) 
 };
