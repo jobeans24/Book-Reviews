@@ -163,11 +163,20 @@ button {
     overflow: hidden;
     transition: max-height 0.3s ease;
         border: 1px solid black;
-        padding: 10px;
-        margin: 10px;
-        
+    margin: 20px;
+    padding: 10px;
+
+
 }
-    
+
+.nyt-container .card {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
+}
 
 .nyt-container.scroll-toggle {
     max-height: 100px;
