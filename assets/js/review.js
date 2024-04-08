@@ -83,7 +83,7 @@ function displayBookTitles() {
 function displayReviewsForBook(bookTitle) {
     const reviews = JSON.parse(localStorage.getItem("reviews")) || {};
     const bookReviews = reviews[bookTitle];
-    const resultsContainer = document.querySelector(".results-container");
+    const resultsContainer = document.querySelector(".reviewResultsContainer");
     resultsContainer.innerHTML = ''; // Clear existing content
 
     bookReviews.forEach(review => {
@@ -102,3 +102,47 @@ function displayReviewsForBook(bookTitle) {
 }
 
 document.addEventListener('DOMContentLoaded', displayBookTitles);
+
+// To Do : Add NYT Best Sellers API fetch function
+// Function to fetch data from the NYT Best Sellers API
+ function getBestSellersData() {
+//     // API endpoint
+     const bestSellersAPI = 'https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=AFYgXoe5pmVDuEA0fr01nWXwxIu38wYX';
+     console.log(bestSellersAPI);
+    // Fetch data from the API
+    fetch(bestSellersAPI)
+         .then(function (response) {
+             if (response.ok) {
+                 response.json().then(function (data) {
+                    console.log(data);
+                     // To Do: Make use of data
+
+                    // Display books in the nyt-container
+                     const nytContainer = document.getElementById('nyt-container');
+                    
+                     data.results.books.forEach(book => {
+                         const card = document.createElement('div');
+                         card.classList.add('card');
+                         card.innerHTML = `
+                             <div class="card-body">
+                                 <h5 class="card-title">${book.title}</h5>
+                                 <p class="card-text">Author: ${book.author}</p>
+                                 <p class="card-text">Publisher: ${book.publisher}</p>
+                             </div>
+                        `;
+                         nytContainer.appendChild(card);
+                     });
+                    });
+            } else {
+                alert('Error: ' + response.statusText);
+            }
+        });
+}
+
+//Call the getBestSellersData function to fetch data from the NYT Best Sellers API
+ getBestSellersData();
+ 
+// To Do: Generate scroll toggle for NYT best sellers and place them below the review results container
+const nytContainer = document.getElementById('nyt-container');
+nytContainer.style.overflowY = 'scroll';
+nytContainer.style.height = '200px'; 
