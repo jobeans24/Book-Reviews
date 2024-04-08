@@ -4,21 +4,56 @@
 // Retrieve previous search results from local storage
 const previousResults = JSON.parse(localStorage.getItem('previousResults')) || [];
 
-// Display previous search results
+// Display previous search titles if container exists
 const previousResultsContainer = document.getElementById('previous-results');
-previousResults.forEach(result => {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    card.innerHTML = `
-        <div class="card-body">
-            <h5 class="card-title">${result.title}</h5>
-            <p class="card-text">${result.author}</p>
-            
-        </div>
-    `;
-    previousResultsContainer.appendChild(card);
-});
+console.log(previousResultsContainer); // Check if container exists
 
+if (previousResultsContainer) {
+    previousResults.forEach(result => {
+        console.log(result.title); // Log each search title
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `
+            <div class="card-body">
+                <h5 class="card-title">${result.title}</h5>
+                <div class="search-title">${result.title}</div> <!-- Insert search title here -->
+            </div>
+        `;
+        previousResultsContainer.appendChild(card);
+    });
+} else {
+    console.error("Error: 'previous-results' container not found.");
+}
+// Wait for DOM content to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Retrieve previous search results from local storage
+    const previousResults = JSON.parse(localStorage.getItem('previousResults')) || [];
+
+    // Save the search title to previousResults
+    const searchTitle = document.getElementById('search-title').value.trim();
+    if (searchTitle) {
+        previousResults.push({ title: searchTitle });
+        localStorage.setItem('previousResults', JSON.stringify(previousResults));
+    }
+
+    // Display previous search titles if container exists
+    const previousResultsContainer = document.getElementById('previous-results');
+    if (previousResultsContainer) {
+        previousResults.forEach(result => {
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.innerHTML = `
+                <div class="card-body">
+                    <h5 class="card-title">${result.title}</h5>
+                    <div class="search-title">${result.title}</div> <!-- Insert search title here -->
+                </div>
+            `;
+            previousResultsContainer.appendChild(card);
+        });
+    } else {
+        console.error("Error: 'previous-results' container not found.");
+    }
+});
 // To Do : Add NYT Best Sellers API fetch function
 // Function to fetch NYT Best Sellers API data
 function getBestSellersData() {
