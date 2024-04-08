@@ -123,30 +123,7 @@ function handleSearchBooks(event) {
 //Function for openlibrary
 function getOpenLibaryData(title, author, genre) {
     
-    let openLibraryApi ='https://openlibrary.org/search.json?';
-    //if else statment to sort provided parameters
-    if (title) {
-        openLibraryApi += 'title=' + title;
-        if (author) {
-            openLibraryApi += '&author=' + author;
-            if (genre) {
-                openLibraryApi += '&subject=' + genre           
-             }
-        } else if (genre) {
-            openLibraryApi += '&subject=' + genre
-        }
-    } else if (author) {
-        openLibraryApi += 'author=' + author;
-        if (genre) {
-            openLibraryApi += '&subject=' + genre;
-        }
-    } else if (genre) {
-        openLibraryApi += 'subject=' + genre;
-    } else {
-        alert('Must input at least one search parameter');
-        return;
-    }
-    
+    let openLibraryApi ='https://openlibrary.org/search.json?title=' + title + '&author=' + author + '&subject=' + genre;
     console.log(openLibraryApi); 
 
     fetch(openLibraryApi)
@@ -155,7 +132,6 @@ function getOpenLibaryData(title, author, genre) {
             response.json().then(function (data){
             console.log(data);
             
-        
             //Todo: make use of data
             renderSearchResults(data);
             //after processing search return to index.html
