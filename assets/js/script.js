@@ -5,18 +5,60 @@
 const previousResults = JSON.parse(localStorage.getItem('previousResults')) || [];
 
 // Display previous search results
-const previousResultsContainer = document.getElementById('previous-results');
-previousResults.forEach(result => {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    card.innerHTML = `
-        <div class="card-body">
-            <h5 class="card-title">${result.title}</h5>
-            <p class="card-text">${result.author}</p>
-            
-        </div>
-    `;
-    previousResultsContainer.appendChild(card);
+const previousResultsContainer = document.querySelector('.previous-results');
+if (previousResultsContainer) {
+    previousResults.forEach(result => {
+        const resultItem = document.createElement('div');
+        resultItem.textContent = result;
+        previousResultsContainer.appendChild(resultItem);
+    });
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const previousSearches = [];
+    const previousSearchesContainer = document.getElementById("previousSearches");
+
+    if (previousSearchesContainer) {
+        updatePreviousSearches();
+
+        function updatePreviousSearches() {
+            previousSearchesContainer.innerHTML = ""; // Clear previous content
+
+            previousSearches.forEach(search => {
+                const searchItem = document.createElement("div");
+                searchItem.textContent = search;
+                previousSearchesContainer.appendChild(searchItem);
+            });
+        }
+    }
+    else {
+        console.error("Element with ID 'previousSearches' not found.");
+    }
+
+    searchForm = document.getElementById("searchForm");
+    if (searchForm) {
+        searchForm.addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get user input from the search form
+            const searchTitle = document.getElementById("search-title").value.trim();
+            const searchAuthor = document.getElementById("search-author").value.trim();
+            const searchGenre = document.getElementById("search-genre").value.trim();
+
+            // Construct search query based on user input
+            const searchQuery = `${searchTitle} ${searchAuthor} ${searchGenre}`.trim();
+
+            if (searchQuery) {
+                previousSearches.push(searchQuery);
+                updatePreviousSearches();
+                closeSearchModal(); // Assuming you have a function to close the modal
+                searchForm.reset(); // Reset the form
+            }
+        });
+    } else {
+        console.error("Element with ID 'searchForm' not found.");
+    }
 });
 
 // To Do : Add NYT Best Sellers API fetch function
@@ -48,7 +90,7 @@ function getBestSellersData() {
                         `;
                         nytContainer.appendChild(card);
                     });
-                    
+
                 });
             } else {
                 alert('Error: ' + response.statusText);
@@ -61,11 +103,11 @@ getBestSellersData();
 
 
 //To Do: Link review button to review.html
-window.onload = function() {
+window.onload = function () {
     let AddreviewButton = document.querySelector('#add-review');
 
-    AddreviewButton.addEventListener('click', function(){
-       window.location.href = 'review.html';
+    AddreviewButton.addEventListener('click', function () {
+        window.location.href = 'review.html';
     });
 };
 
@@ -74,16 +116,16 @@ window.onload = function() {
 const searchForm = document.querySelector("form");
 
 // Add event listener for form submission
-searchForm.addEventListener("submit", function(event) {
+searchForm.addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent the default form submission behavior
-    
+
     // Get the values from the search form inputs
-   const title = document.getElementById("search-title").value;
-   const author = document.getElementById("search-author").value;
+    const title = document.getElementById("search-title").value;
+    const author = document.getElementById("search-author").value;
     const genre = document.getElementById("search-genre").value;
-    
+
     // Perform any necessary actions with the search values (e.g., fetch data, display results)
-    
+
     // Reset the form after submission
     searchForm.reset();
 });
@@ -93,7 +135,7 @@ searchForm.addEventListener("submit", function(event) {
 function openSearchModal() {
     var modal = document.getElementById('search-modal');
     modal.style.display = 'block';
-        
+
 };
 
 function openReviewModal() {
@@ -108,7 +150,7 @@ function handleSearchBooks(event) {
     let title = $('#search-title').val().trim();
     let author = $('#search-author').val().trim();
     let genre = $('#search-genre').val().trim();
-    
+
     console.log('Title', title);
     console.log('Author', author);
     console.log('Genre', genre);
@@ -118,30 +160,30 @@ function handleSearchBooks(event) {
 };
 //Function for openlibrary
 function getOpenLibaryData(title, author, genre) {
-    
-    let openLibraryApi ='https://openlibrary.org/search.json?title=' + title + '&author=' + author + '&subject=' + genre;
-    console.log(openLibraryApi); 
+
+    let openLibraryApi = 'https://openlibrary.org/search.json?title=' + title + '&author=' + author + '&subject=' + genre;
+    console.log(openLibraryApi);
 
     fetch(openLibraryApi)
         .then(function (response) {
-         if (response.ok){
-            response.json().then(function (data){
-            console.log(data);
-            
-            //Todo: make use of data
-            renderSearchResults(data);
-            //after processing search return to index.html
-         
-            $('#search-modal').hide();
-            
-          });
-         } else {
-          alert("Error: " + response.statusText);
-        };     
+            if (response.ok) {
+                response.json().then(function (data) {
+                    console.log(data);
+
+                    //Todo: make use of data
+                    renderSearchResults(data);
+                    //after processing search return to index.html
+
+                    $('#search-modal').hide();
+
+                });
+            } else {
+                alert("Error: " + response.statusText);
+            };
         });
-    };
+};
 //Function to render serch results
-function renderSearchResults(searchResults){
+function renderSearchResults(searchResults) {
     if (searchResults.length === 0) {
         alert("Search results not available");
         return;
@@ -150,27 +192,27 @@ function renderSearchResults(searchResults){
     //clear previous search
     $('#searchResultsContainer').empty();
 
-searchResults.docs.forEach(doc => {
+    searchResults.docs.forEach(doc => {
 
-    let resultsCard = $('<div>').css('background-color', 'white');
-    let title = $('<h5>').text('Title: ' + doc.title);
-    let author = $('<h5>').text('Author: ' + doc.author_name);
-    let ratings = $('<h5>').text('Ratings: ' + doc.rating_average);
-    //appending results to results card
-    resultsCard.append(title, author, ratings);
-    //appending results card to container
-    $('#searchResultsContainer').append(resultsCard);
-});
+        let resultsCard = $('<div>').css('background-color', 'white');
+        let title = $('<h5>').text('Title: ' + doc.title);
+        let author = $('<h5>').text('Author: ' + doc.author_name);
+        let ratings = $('<h5>').text('Ratings: ' + doc.rating_average);
+        //appending results to results card
+        resultsCard.append(title, author, ratings);
+        //appending results card to container
+        $('#searchResultsContainer').append(resultsCard);
+    });
 };
 
 // Function to redirect the page to review.html on click of the Add review button
 
-window.onload = function() {
+window.onload = function () {
     let AddreviewButton = document.querySelector('#add-review');
 
-    AddreviewButton.addEventListener('click', function(){
+    AddreviewButton.addEventListener('click', function () {
         window.location.href = 'review.html';
     });
- //search submit event listener
- $('#submitsearch').on('click', handleSearchBooks) 
+    //search submit event listener
+    $('#submitsearch').on('click', handleSearchBooks)
 };
