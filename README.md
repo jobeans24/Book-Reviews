@@ -46,3 +46,5 @@ Index.html Imported Images
 ![Header image](./assets/images/bookgif.png)
 ![alt text](./assets/images/bookshelf.png)
     
+![alt text](image.png)
+![alt text](image-1.png)
